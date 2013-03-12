@@ -25,12 +25,11 @@ The Member post type includes the following fields:
 * *Social links target
 * *Twitter handle - Add the member's Twitter handle
 
-*Use these fields in conjuction with **[Metaphor Widgets](http://wordpress.org/extend/plugins/mtphr-widgets/)** to display this info in your sidebar.
+*Use these fields in conjuction with **[Metaphor Widgets](http://wordpress.org/extend/plugins/mtphr-widgets/)** to display this info on each single Member post sidebar.
 
-### Member Archive Shortcode
+#### Member Archive Shortcode
 
 **Attributes**
-
 * **posts_per_age** - Set the number of members to display per page. *Default: 9*.
 * **columns** - Set the number of columns in the grid. *Default: 3*.
 * **excerpt_length** - The length of the post excerpt. This will max out at the set excerpt length of your theme. *Default: 80*.
@@ -42,10 +41,6 @@ The Member post type includes the following fields:
 `[mtphr_members_archive]`
 
 `[mtphr_members_archive posts_per_page="6" columns="4" excerpt_length="200" excerpt_more="{View info}" assets="thumbnail,name,excerpt"]`
-
-
-
-**More info and settings coming soon.**
 
 
 
