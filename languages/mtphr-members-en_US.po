@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Metaphor Members v1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-03-12 15:01:12+0000\n"
+"Last-Translator: admin <joe@metaphorcreations.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: includes/edit-columns.php:23
+#@ mtphr-members
+msgid "Job Title"
+msgstr "Job Title"
+
+#: includes/functions.php:44
+#: includes/settings.php:51
+#@ mtphr-members
+msgid "Member"
+msgstr "Member"
+
+#: includes/functions.php:45
+#: includes/settings.php:59
+#@ mtphr-members
+msgid "Members"
+msgstr "Members"
+
+#: includes/meta-boxes.php:22
+#@ mtphr-members
+msgid "Website"
+msgstr "Website"
+
+#: includes/meta-boxes.php:28
+#@ mtphr-members
+msgid "Link"
+msgstr "Link"
+
+#: includes/meta-boxes.php:36
+#@ mtphr-members
+msgid "Title"
+msgstr "Title"
+
+#: includes/meta-boxes.php:41
+#@ mtphr-members
+msgid "Description"
+msgstr "Description"
+
+#: includes/meta-boxes.php:49
+#@ mtphr-members
+msgid "Member Info"
+msgstr "Member Info"
+
+#: includes/meta-boxes.php:57
+#@ mtphr-members
+msgid "Member Title"
+msgstr "Member Title"
+
+#: includes/meta-boxes.php:58
+#@ mtphr-members
+msgid "Add a job title."
+msgstr "Add a job title."
+
+#: includes/meta-boxes.php:63
+#@ mtphr-members
+msgid "Contact Info"
+msgstr "Contact Info"
+
+#: includes/meta-boxes.php:65
+#@ mtphr-members
+msgid "Add contact info."
+msgstr "Add contact info."
+
+#: includes/meta-boxes.php:68
+#@ mtphr-members
+msgid "Email"
+msgstr "Email"
+
+#: includes/meta-boxes.php:72
+#@ mtphr-members
+msgid "Tel"
+msgstr "Tel"
+
+#: includes/meta-boxes.php:76
+#@ mtphr-members
+msgid "Fax"
+msgstr "Fax"
+
+#: includes/meta-boxes.php:84
+#@ mtphr-members
+msgid "Social Links"
+msgstr "Social Links"
+
+#: includes/meta-boxes.php:86
+#@ mtphr-members
+msgid "Add links to social sites."
+msgstr "Add links to social sites."
+
+#: includes/meta-boxes.php:91
+#@ mtphr-members
+msgid "Social Links Target"
+msgstr "Social Links Target"
+
+#: includes/meta-boxes.php:92
+#@ mtphr-members
+msgid "Open links in a new window/tab"
+msgstr "Open links in a new window/tab"
+
+#: includes/meta-boxes.php:93
+#@ mtphr-members
+msgid "Select to open links in a new window/tab."
+msgstr "Select to open links in a new window/tab."
+
+#: includes/meta-boxes.php:98
+#@ mtphr-members
+msgid "Twitter Handle"
+msgstr "Twitter Handle"
+
+#: includes/meta-boxes.php:99
+#@ mtphr-members
+msgid "Add a twitter handle."
+msgstr "Add a twitter handle."
+
+#: includes/meta-boxes.php:133
+#@ mtphr-members
+msgid "Contact Widget Override"
+msgstr "Contact Widget Override"
+
+#: includes/meta-boxes.php:135
+#@ mtphr-members
+msgid "Override the following contact widgets if they are active."
+msgstr "Override the following contact widgets if they are active."
+
+#: includes/meta-boxes.php:140
+#@ mtphr-members
+msgid "Social Widget Override"
+msgstr "Social Widget Override"
+
+#: includes/meta-boxes.php:142
+#@ mtphr-members
+msgid "Override the following social widgets if they are active."
+msgstr "Override the following social widgets if they are active."
+
+#: includes/meta-boxes.php:147
+#@ mtphr-members
+msgid "Twitter Widget Override"
+msgstr "Twitter Widget Override"
+
+#: includes/meta-boxes.php:149
+#@ mtphr-members
+msgid "Override the following twitter widgets if they are active."
+msgstr "Override the following twitter widgets if they are active."
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "Install and activate Metaphor Widgets to enhance your Metaphor Members sidebars!"
+msgstr "Install and activate Metaphor Widgets to enhance your Metaphor Members sidebars!"
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "You'll be able to add the following widgets to a single sidebar and easily override them with each member's custom settings."
+msgstr "You'll be able to add the following widgets to a single sidebar and easily override them with each member's custom settings."
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "Metaphor Contact Widget"
+msgstr "Metaphor Contact Widget"
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "Metaphor Social Widget"
+msgstr "Metaphor Social Widget"
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "Metaphor Twitter Widget"
+msgstr "Metaphor Twitter Widget"
+
+#: includes/meta-boxes.php:165
+#@ mtphr-members
+msgid "Metaphor Widgets Overrides"
+msgstr "Metaphor Widgets Overrides"
+
+#: includes/post-types.php:27
+#: includes/post-types.php:28
+#: includes/post-types.php:38
+#, php-format
+#@ mtphr-members
+msgid "%1$s"
+msgstr "%1$s"
+
+#: includes/post-types.php:29
+#@ mtphr-members
+msgid "Add New"
+msgstr "Add New"
+
+#: includes/post-types.php:30
+#, php-format
+#@ mtphr-members
+msgid "Add New %1$s"
+msgstr "Add New %1$s"
+
+#: includes/post-types.php:31
+#, php-format
+#@ mtphr-members
+msgid "Edit %1$s"
+msgstr "Edit %1$s"
+
+#: includes/post-types.php:32
+#, php-format
+#@ mtphr-members
+msgid "New %1$s"
+msgstr "New %1$s"
+
+#: includes/post-types.php:33
+#, php-format
+#@ mtphr-members
+msgid "View %1$s"
+msgstr "View %1$s"
+
+#: includes/post-types.php:34
+#, php-format
+#@ mtphr-members
+msgid "Search %1$s"
+msgstr "Search %1$s"
+
+#: includes/post-types.php:35
+#, php-format
+#@ mtphr-members
+msgid "No %1$s Found"
+msgstr "No %1$s Found"
+
+#: includes/post-types.php:36
+#, php-format
+#@ mtphr-members
+msgid "No %1$s Found in Trash"
+msgstr "No %1$s Found in Trash"
+
+#: includes/settings.php:43
+#@ mtphr-members
+msgid "members"
+msgstr "members"
+
+#: includes/settings.php:104
+#@ mtphr-members
+msgid "Member Settings"
+msgstr "Member Settings"
+
+#: includes/shortcodes.php:169
+#@ mtphr-members
+msgid "Newer"
+msgstr "Newer"
+
+#: includes/shortcodes.php:172
+#@ mtphr-members
+msgid "Older"
+msgstr "Older"
+
+#: includes/settings.php:41
+#@ mtphr-members
+msgid "Slug"
+msgstr "Slug"
+
+#: includes/settings.php:45
+#@ mtphr-members
+msgid "Set the slug for the member post type and category.<br/><strong>* You must update permalinks after changing the slug.</strong><br/><strong>* You must not have a page slug with the same name as this slug.</strong>"
+msgstr "Set the slug for the member post type and category.<br/><strong>* You must update permalinks after changing the slug.</strong><br/><strong>* You must not have a page slug with the same name as this slug.</strong>"
+
+#: includes/settings.php:49
+#@ mtphr-members
+msgid "Singular Label"
+msgstr "Singular Label"
+
+#: includes/settings.php:53
+#@ mtphr-members
+msgid "Set the singular label for the member post type and category."
+msgstr "Set the singular label for the member post type and category."
+
+#: includes/settings.php:57
+#@ mtphr-members
+msgid "Plural Label"
+msgstr "Plural Label"
+
+#: includes/settings.php:61
+#@ mtphr-members
+msgid "Set the plural label for the member post type."
+msgstr "Set the plural label for the member post type."
+
+#: includes/settings.php:128
+#@ mtphr-members
+msgid "<h4>Default settings for the Metaphor Members post type.</h4>"
+msgstr "<h4>Default settings for the Metaphor Members post type.</h4>"
+
