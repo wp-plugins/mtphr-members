@@ -1,0 +1,41 @@
+/* Table of Contents
+
+* Dashboard Menu Icons
+* Edit Screen Rows
+* Edit Screen Icons
+* Setting Screen Icons
+
+*/
+
+
+/* Dashboard Menu Icon
+------------------------------------------------------------ */
+
+#menu-posts-mtphr_member .wp-menu-image {
+	background: url(../images/icon-16.png) no-repeat 6px -32px !important;
+}
+#menu-posts-mtphr_member:hover .wp-menu-image,
+#menu-posts-mtphr_member.wp-has-current-submenu .wp-menu-image {
+	background-position:6px 0px !important;
+}
+
+/* Edit Screen Rows
+------------------------------------------------------------ */
+
+.column-shortcode_id {
+	width: 40px;
+}
+
+/* Edit Screen Icon
+------------------------------------------------------------ */
+
+#icon-edit.icon32-posts-mtphr_member {
+	background: url(../images/icon-32.png) no-repeat;
+}
+
+/* Setting Screen Icons
+------------------------------------------------------------ */
+
+#icon-mtphr_member {
+	background: url(../images/icon-32.png) no-repeat;
+}
