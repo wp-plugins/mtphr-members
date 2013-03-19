@@ -57,4 +57,7 @@ function mtphr_members_scripts() {
 	// Load the style sheet
 	wp_register_style( 'mtphr-members', MTPHR_MEMBERS_URL.'/assets/css/style.css', false, MTPHR_MEMBERS_VERSION );
 	wp_enqueue_style( 'mtphr-members' );
+	
+	wp_register_script( 'respond', MTPHR_MEMBERS_URL.'/assets/js/respond.min.js', array('jquery'), MTPHR_MEMBERS_VERSION, true );
+	wp_enqueue_script( 'respond' );
 }

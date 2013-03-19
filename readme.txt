@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: custom post type, members, team, team members, member info, info
 Requires at least: 3.2
 Tested up to: 3.5.1
-Stable tag: 1.0.4
+Stable tag: /trunk/
 License: GPL2
 
 Creates a custom post type to display info about members of your group or organization.
@@ -61,10 +61,16 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.1 =
+* Added respond.js to add media queries for older browsers.
+
 = 1.0.0 =
 * Initial upload of Metaphor Members.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Added respond.js to add media queries for older browsers.
 
 = 1.0.0 =
 Initial upload of Metaphor Members.
