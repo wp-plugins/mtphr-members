@@ -12,7 +12,7 @@ add_shortcode( 'mtphr_members_archive', 'mtphr_members_archive_display' );
 /**
  * Display the members archive.
  *
- * @since 1.0.0
+ * @since 1.0.2
  */
 function mtphr_members_archive_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -22,6 +22,10 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		'excerpt_more' => '&hellip;',
 		'assets' => 'thumbnail,name,social,title,excerpt'
 	), $atts ) );
+	
+	// Set the responsiveness of the grid
+	$row = apply_filters( 'mtphr_members_responsive_grid', false );
+	$row_class = $row ? 'mtphr-members-row-responsive' : 'mtphr-members-row';
 	
 	// Filter the container
 	$container = apply_filters( 'mtphr_members_container', 'article' );
@@ -57,11 +61,11 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		// Get the count
 		$count = ( $wp_query->current_post );
 		if( $count%intval($columns) == 0 ) {
-			echo '<div class="mtphr-members-row">';
+			echo '<div class="'.$row_class.'">';
 		}
 		?>
 		
-		<div class="mtphr-members-span<?php echo $span; ?>">
+		<div class="mtphr-members-grid<?php echo $span; ?>">
 			
 			<?php do_action( 'mtphr_members_before' ); ?>
 			<<?php echo $container; ?> id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
