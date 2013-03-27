@@ -61,6 +61,10 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.2 =
+* Updated css classes for responsive and non-responsive site.
+* Added filter to set responsiveness.
+
 = 1.0.1 =
 * Added respond.js to add media queries for older browsers.
 
@@ -68,6 +72,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Members.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Updated css classes for responsive and non-responsive site. Added filter to set responsiveness.
 
 = 1.0.1 =
 Added respond.js to add media queries for older browsers.
