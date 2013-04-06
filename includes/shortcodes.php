@@ -18,6 +18,7 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'posts_per_page' => 9,
 		'columns' => 3,
+		'categories' => false,
 		'excerpt_length' => 140,
 		'excerpt_more' => '&hellip;',
 		'assets' => 'thumbnail,name,social,title,excerpt'
@@ -42,6 +43,16 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		'paged' => $page,
 		'posts_per_page' => intval($posts_per_page)
 	);
+	if( $categories ) {
+		$categories = explode(',', $categories);
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'mtphr_member_category',
+				'field' => 'slug',
+				'terms' => $categories
+			)
+		);
+	}
 	
 	// Save the original query & create a new one
 	global $wp_query;
@@ -84,7 +95,8 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 								// Get the thumb image
 								$thumb_size = apply_filters( 'mtphr_members_thumbnail_size', 'thumbnail' );
 								$thumbnail = get_the_post_thumbnail( get_the_id(), $thumb_size );
-								echo '<a href="'.get_permalink().'">'.apply_filters( 'mtphr_members_thumbnail', $thumbnail, $thumb_size ).'</a>';
+								$thumbnail = '<a href="'.get_permalink().'">'.$thumbnail.'</a>';
+								echo apply_filters( 'mtphr_members_thumbnail', $thumbnail, $thumb_size );
 							}
 							break;
 							
@@ -121,7 +133,9 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 							
 						case 'title':
 							// Display the member title
-							echo '<p class="mtphr-members-title">'.apply_filters( 'mtphr_members_archive_title', $title ).'</p>';
+							if($title = get_post_meta( get_the_ID(), '_mtphr_members_title', true) ) {
+								echo '<p class="mtphr-members-title">'.apply_filters( 'mtphr_members_archive_title', $title ).'</p>';
+							}
 							break;
 							
 						case 'excerpt':
