@@ -61,6 +61,11 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.3 =
+* Added member category taxonomy.
+* Updated archive shortcode to filter by categories.
+* Updated Metaphor Widget Overrides to remove unused widgets.
+
 = 1.0.2 =
 * Updated css classes for responsive and non-responsive site.
 * Added filter to set responsiveness.
@@ -72,6 +77,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Members.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Added member category taxonomy. Updated archive shortcode to filter by categories. Updated Metaphor Widget Overrides to remove unused widgets.
 
 = 1.0.2 =
 Updated css classes for responsive and non-responsive site. Added filter to set responsiveness.
