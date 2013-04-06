@@ -191,54 +191,57 @@ add_filter( 'dynamic_sidebar_params', 'mtphr_members_remove_widgets' );
 /**
  * Remove unused widgets
  *
- * @since 1.0.3
+ * @since 1.0.4
  */
 function mtphr_members_remove_widgets( $params ) {
-	
-	// Create an array to store disabled widgets
-	$disabled_widget_ids = array();
-	
-	// Check for disabled contact widgets
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
-	if( is_array($widgets) ) {
-		$member_info = get_post_meta( get_the_ID(), '_mtphr_members_contact_info', true );
-		if( count($member_info) == 1 && $member_info[0]['title'] == '' && $member_info[0]['description'] == '' ) {
-			$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
-		}
-	}
-	
-	// Check for disabled social widgets
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
-	if( is_array($widgets) ) {
-		$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
-		if( count($member_sites) == 1 && $member_sites[0]['link'] == '' ) {
-			$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
-		}
-	}
-	
-	// Check for disabled twitter handles
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
-	if( is_array($widgets) ) {
-		$member_twitter = get_post_meta( get_the_ID(), '_mtphr_members_twitter', true );
-		if( $member_twitter == '' ) {
-			$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
-		}
-	}
-	
-	// Create an array of the disabled widget keys
-	$disabled_widgets = array();
-	foreach( $params as $i=>$widget ) {
-		if( isset($widget['widget_id']) ) {
-			if( array_key_exists($widget['widget_id'], $disabled_widget_ids) ) {
-				$disabled_widgets[] = $i;
+
+	if( !is_admin() && get_post_type() == 'mtphr_member' ) {
+		
+		// Create an array to store disabled widgets
+		$disabled_widget_ids = array();
+		
+		// Check for disabled contact widgets
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
+		if( is_array($widgets) ) {
+			$member_info = get_post_meta( get_the_ID(), '_mtphr_members_contact_info', true );
+			if( count($member_info) == 1 && $member_info[0]['title'] == '' && $member_info[0]['description'] == '' ) {
+				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
 			}
 		}
-	}
-	
-	// Remove the unused widgets
-	$disabled_widgets = array_reverse($disabled_widgets);
-	foreach( $disabled_widgets as $i ) {
-		unset( $params[$i] );
+		
+		// Check for disabled social widgets
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
+		if( is_array($widgets) ) {
+			$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
+			if( count($member_sites) == 1 && $member_sites[0]['link'] == '' ) {
+				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
+			}
+		}
+		
+		// Check for disabled twitter handles
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
+		if( is_array($widgets) ) {
+			$member_twitter = get_post_meta( get_the_ID(), '_mtphr_members_twitter', true );
+			if( $member_twitter == '' ) {
+				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
+			}
+		}
+		
+		// Create an array of the disabled widget keys
+		$disabled_widgets = array();
+		foreach( $params as $i=>$widget ) {
+			if( isset($widget['widget_id']) ) {
+				if( array_key_exists($widget['widget_id'], $disabled_widget_ids) ) {
+					$disabled_widgets[] = $i;
+				}
+			}
+		}
+		
+		// Remove the unused widgets
+		$disabled_widgets = array_reverse($disabled_widgets);
+		foreach( $disabled_widgets as $i ) {
+			unset( $params[$i] );
+		}
 	}
 	
 	return $params;

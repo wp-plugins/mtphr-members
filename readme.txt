@@ -61,6 +61,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.4 =
+* Bug fix for auto widget removal.
+
 = 1.0.3 =
 * Added member category taxonomy.
 * Updated archive shortcode to filter by categories.
@@ -77,6 +80,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Members.
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Bug fix for auto widget removal.
 
 = 1.0.3 =
 Added member category taxonomy. Updated archive shortcode to filter by categories. Updated Metaphor Widget Overrides to remove unused widgets.
