@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Members v1.0.0\n"
+"Project-Id-Version: Metaphor Members v1.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-12 15:01:12+0000\n"
+"PO-Revision-Date: 2013-07-11 17:12:21+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -164,11 +164,6 @@ msgstr "Override the following twitter widgets if they are active."
 
 #: includes/meta-boxes.php:158
 #@ mtphr-members
-msgid "Install and activate Metaphor Widgets to enhance your Metaphor Members sidebars!"
-msgstr "Install and activate Metaphor Widgets to enhance your Metaphor Members sidebars!"
-
-#: includes/meta-boxes.php:158
-#@ mtphr-members
 msgid "You'll be able to add the following widgets to a single sidebar and easily override them with each member's custom settings."
 msgstr "You'll be able to add the following widgets to a single sidebar and easily override them with each member's custom settings."
 
@@ -257,12 +252,12 @@ msgstr "members"
 msgid "Member Settings"
 msgstr "Member Settings"
 
-#: includes/shortcodes.php:169
+#: includes/shortcodes.php:170
 #@ mtphr-members
 msgid "Newer"
 msgstr "Newer"
 
-#: includes/shortcodes.php:172
+#: includes/shortcodes.php:173
 #@ mtphr-members
 msgid "Older"
 msgstr "Older"
@@ -301,4 +296,65 @@ msgstr "Set the plural label for the member post type."
 #@ mtphr-members
 msgid "<h4>Default settings for the Metaphor Members post type.</h4>"
 msgstr "<h4>Default settings for the Metaphor Members post type.</h4>"
+
+#: includes/meta-boxes.php:158
+#@ mtphr-members
+msgid "Install and activate <a href=\"http://wordpress.org/extend/plugins/mtphr-widgets/\" target=\"_blank\">Metaphor Widgets</a> to enhance your Metaphor Members sidebars!"
+msgstr "Install and activate <a href=\"http://wordpress.org/extend/plugins/mtphr-widgets/\" target=\"_blank\">Metaphor Widgets</a> to enhance your Metaphor Members sidebars!"
+
+#: includes/taxonomies.php:26
+#, php-format
+#@ mtphr-members
+msgid "%s Categories"
+msgstr "%s Categories"
+
+#: includes/taxonomies.php:27
+#@ mtphr-members
+msgid "Category"
+msgstr "Category"
+
+#: includes/taxonomies.php:28
+#@ mtphr-members
+msgid "Search Categories"
+msgstr "Search Categories"
+
+#: includes/taxonomies.php:29
+#@ mtphr-members
+msgid "All Categories"
+msgstr "All Categories"
+
+#: includes/taxonomies.php:30
+#@ mtphr-members
+msgid "Parent"
+msgstr "Parent"
+
+#: includes/taxonomies.php:31
+#@ mtphr-members
+msgid "Parent:"
+msgstr "Parent:"
+
+#: includes/taxonomies.php:32
+#@ mtphr-members
+msgid "Edit Category"
+msgstr "Edit Category"
+
+#: includes/taxonomies.php:33
+#@ mtphr-members
+msgid "Update Category"
+msgstr "Update Category"
+
+#: includes/taxonomies.php:34
+#@ mtphr-members
+msgid "Add New Category"
+msgstr "Add New Category"
+
+#: includes/taxonomies.php:35
+#@ mtphr-members
+msgid "New Category"
+msgstr "New CategoryNew Category"
+
+#: includes/taxonomies.php:36
+#@ mtphr-members
+msgid "Categories"
+msgstr "Categories"
 

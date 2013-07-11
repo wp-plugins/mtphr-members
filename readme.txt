@@ -61,6 +61,11 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.5 =
+* Replaced social icon sprites with custom social font.
+* PHP & CSS adjustments made due to implementation of custom font.
+* Fixed localization script.
+
 = 1.0.4 =
 * Bug fix for auto widget removal.
 
@@ -80,6 +85,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Members.
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+Replaced social icon sprites with custom social font. PHP & CSS adjustments made due to implementation of custom font. Fixed localization script.
 
 = 1.0.4 =
 Bug fix for auto widget removal.
