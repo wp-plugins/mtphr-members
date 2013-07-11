@@ -2,17 +2,17 @@
 /*
 Plugin Name: Metaphor Members
 Description: Adds a custom post type to easily create a collection of members. Add a member archive to any page with shortcodes.
-Version: 1.0.4
+Version: 1.0.5
 Author: Metaphor Creations
 Author URI: http://www.metaphorcreations.com
 License: GPL2
 */
 
-/*  
+/*
 Copyright 2012 Metaphor Creations  (email : joe@metaphorcreations.com)
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -40,9 +40,9 @@ The icons are licensed under a Creative Commons Attribution
 
 /**Define Widget Constants */
 if ( WP_DEBUG ) {
-	define ( 'MTPHR_MEMBERS_VERSION', '1.0.4-'.time() );
+	define ( 'MTPHR_MEMBERS_VERSION', '1.0.5-'.time() );
 } else {
-	define ( 'MTPHR_MEMBERS_VERSION', '1.0.4' );
+	define ( 'MTPHR_MEMBERS_VERSION', '1.0.5' );
 }
 define ( 'MTPHR_MEMBERS_DIR', plugin_dir_path(__FILE__) );
 define ( 'MTPHR_MEMBERS_URL', plugins_url().'/mtphr-members' );

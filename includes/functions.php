@@ -35,17 +35,17 @@ add_post_type_support( 'mtphr_member', 'woosidebars' );
  * @since 1.0.0
  */
 function mtphr_members_settings() {
-	
+
 	// Get the options
 	$settings = get_option( 'mtphr_members_settings', array() );
-	
+
 	$defaults = array(
 		'slug' => 'members',
 		'singular_label' => __( 'Member', 'mtphr-members' ),
 		'plural_label' => __( 'Members', 'mtphr-members' )
 	);
 	$defaults = apply_filters( 'mtphr_members_default_settings', $defaults );
-	
+
 	return wp_parse_args( $settings, $defaults );
 }
 
@@ -55,10 +55,10 @@ add_action( 'plugins_loaded', 'mtphr_members_localization' );
 /**
  * Setup localization
  *
- * @since 1.0.0
+ * @since 1.0.5
  */
 function mtphr_members_localization() {
-  load_plugin_textdomain( 'mtphr-members', false, MTPHR_MEMBERS_DIR.'languages/' );
+  load_plugin_textdomain( 'mtphr-members', false, 'mtphr-members/languages/' );
 }
 
 
@@ -75,7 +75,7 @@ function mtphr_members_excerpt( $length = 200, $more = '&hellip;'  ) {
 function get_mtphr_members_excerpt( $length = 200, $more = '&hellip;' ) {
 	$excerpt = get_the_excerpt();
 	$length++;
-	
+
 	$output = '';
 	if ( mb_strlen( $excerpt ) > $length ) {
 		$subex = mb_substr( $excerpt, 0, $length - mb_strlen($more) );
@@ -103,9 +103,9 @@ add_filter( 'mtphr_widgets_social_sites', 'mtphr_widgets_members_social_sites', 
  * @since 1.0.0
  */
 function mtphr_widgets_members_social_sites( $sites, $id ) {
-	
+
 	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
-	
+
 	if( is_array($widgets) ) {
 		if( array_key_exists($id, $widgets) ) {
 			$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
@@ -125,9 +125,9 @@ add_filter( 'mtphr_widgets_social_new_tab', 'mtphr_widgets_members_social_new_ta
  * @since 1.0.0
  */
 function mtphr_widgets_members_social_new_tab( $new_tab, $id ) {
-	
+
 	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
-	
+
 	if( is_array($widgets) ) {
 		if( array_key_exists($id, $widgets) ) {
 			$member_new_tab = get_post_meta( get_the_ID(), '_mtphr_members_social_new_tab', true );
@@ -150,9 +150,9 @@ add_filter( 'mtphr_widgets_contact_info', 'mtphr_widgets_members_contact_info', 
  * @since 1.0.0
  */
 function mtphr_widgets_members_contact_info( $contact_info, $id ) {
-	
+
 	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
-	
+
 	if( is_array($widgets) ) {
 		if( array_key_exists($id, $widgets) ) {
 			$member_info = get_post_meta( get_the_ID(), '_mtphr_members_contact_info', true );
@@ -172,9 +172,9 @@ add_filter( 'mtphr_widgets_twitter_name', 'mtphr_widgets_members_twitter_name', 
  * @since 1.0.0
  */
 function mtphr_widgets_members_twitter_name( $twitter_name, $id ) {
-	
+
 	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
-	
+
 	if( is_array($widgets) ) {
 		if( array_key_exists($id, $widgets) ) {
 			$member_twitter = get_post_meta( get_the_ID(), '_mtphr_members_twitter', true );
@@ -196,10 +196,10 @@ add_filter( 'dynamic_sidebar_params', 'mtphr_members_remove_widgets' );
 function mtphr_members_remove_widgets( $params ) {
 
 	if( !is_admin() && get_post_type() == 'mtphr_member' ) {
-		
+
 		// Create an array to store disabled widgets
 		$disabled_widget_ids = array();
-		
+
 		// Check for disabled contact widgets
 		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
 		if( is_array($widgets) ) {
@@ -208,7 +208,7 @@ function mtphr_members_remove_widgets( $params ) {
 				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
 			}
 		}
-		
+
 		// Check for disabled social widgets
 		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
 		if( is_array($widgets) ) {
@@ -217,7 +217,7 @@ function mtphr_members_remove_widgets( $params ) {
 				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
 			}
 		}
-		
+
 		// Check for disabled twitter handles
 		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
 		if( is_array($widgets) ) {
@@ -226,7 +226,7 @@ function mtphr_members_remove_widgets( $params ) {
 				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
 			}
 		}
-		
+
 		// Create an array of the disabled widget keys
 		$disabled_widgets = array();
 		foreach( $params as $i=>$widget ) {
@@ -236,14 +236,14 @@ function mtphr_members_remove_widgets( $params ) {
 				}
 			}
 		}
-		
+
 		// Remove the unused widgets
 		$disabled_widgets = array_reverse($disabled_widgets);
 		foreach( $disabled_widgets as $i ) {
 			unset( $params[$i] );
 		}
 	}
-	
+
 	return $params;
 }
 
@@ -253,17 +253,18 @@ function mtphr_members_remove_widgets( $params ) {
 /**
  * Get an array of social links
  *
- * @since 1.0.0
+ * @since 1.0.5
  */
 function mtphr_members_social_sites_array() {
-	
+
 	$social_sites = array(
 		'twitter' => 'Twitter',
 		'facebook' => 'Facebook',
 		'linkedin' => 'LinkedIn',
 		'googleplus' => 'Google+',
+		'pinterest' => 'Pinterest',
 		'flickr' => 'Flickr',
-		'tridadvisor' => 'TripAdvisor',
+		'tripadvisor' => 'TripAdvisor',
 		'reddit' => 'reddit',
 		'posterous' => 'Posterous',
 		'plurk' => 'Plurk',
@@ -309,7 +310,7 @@ function mtphr_members_social_sites_array() {
 		'blogger' => 'Blogger',
 		'yahoobuzz' => 'Yahoo! Buzz'
 	);
-	
+
 	return $social_sites;
 }
 
@@ -327,15 +328,15 @@ function mtphr_members_social_sites( $id ) {
 	$new_tab = get_post_meta( $id, '_mtphr_members_social_new_tab', true );
 
 	if( isset($sites[0]) ) {
-	
+
 		$t = ( $new_tab ) ? ' target="_blank"' : '';
-		echo '<div class="mtphr-members-social-links clearfix">'; 
-		
+		echo '<div class="mtphr-members-social-links clearfix">';
+
 		foreach( $sites as $site ) {
-			echo '<a class="mtphr-members-social-site mtphr-members-social-'.$site['site'].' mtphr-hover-anim" href="'.esc_url($site['link']).'"'.$t.'>'.$site['site'].'<span class="mtphr-hover-anim-target"></span></a>';
+			echo '<a class="mtphr-members-social-site" href="'.esc_url($site['link']).'"'.$t.'><i class="mtphr-socon-'.$site['site'].'"></i></a>';
 		}
-		
-		echo '</div>'; 	
+
+		echo '</div>';
 	}
 }
 
