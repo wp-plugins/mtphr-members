@@ -61,6 +61,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.8 =
+* Added full content option for archive excerpt (use "excerpt_length = -1")
+
 = 1.0.7 =
 * Added contact info option to archive shortcode
 * Added "disable permalinks" option to archive shortcode
@@ -97,5 +100,5 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Multiple archive shortcode updates.
+Added full content option for archive excerpt (use "excerpt_length = -1").
 
