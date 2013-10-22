@@ -507,22 +507,31 @@ function get_mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140,
 	$post_id = $post_id ? $post_id : get_the_id();
 
 	$html = '';
-	if( $excerpt_length > 0 ) {
 
-		$links = array();
-		preg_match('/{(.*?)\}/s', $excerpt_more, $links);
-		if( isset($links[0]) ) {
-			$more_link = '<a href="'.get_permalink($post_id).'">'.$links[1].'</a>';
-			$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+	$links = array();
+	preg_match('/{(.*?)\}/s', $excerpt_more, $links);
+	if( isset($links[0]) ) {
+		$more_link = '<a href="'.get_permalink($post_id).'">'.$links[1].'</a>';
+		$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+	}
+	if( $excerpt_length <= 0 ) {
+		if( !$excerpt = get_the_content() ) {
+			$post = get_post( $post_id );
+			$excerpt = $post->post_content;
 		}
+	} else {
 		if( !$excerpt = get_the_excerpt() ) {
 			$post = get_post( $post_id );
 			$excerpt = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
 		}
 		$excerpt = wp_html_excerpt( $excerpt, intval($excerpt_length) );
-		$excerpt .= $excerpt_more;
-		$html .= '<p class="mtphr-members-excerpt">'.apply_filters( 'mtphr_members_excerpt', $excerpt, $excerpt_length, $excerpt_more ).'</p>';
 	}
+	$excerpt .= $excerpt_more;
+	if( $excerpt_length <= 0 ) {
+		$excerpt = apply_filters( 'the_content', $excerpt );
+	}
+	$html .= '<p class="mtphr-members-excerpt">'.apply_filters( 'mtphr_members_excerpt', $excerpt, $excerpt_length, $excerpt_more ).'</p>';
+
 	return $html;
 }
 }
