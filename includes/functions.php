@@ -69,7 +69,8 @@ function mtphr_members_localization() {
  *
  * @since 1.0.0
  */
-function mtphr_members_excerpt( $length = 200, $more = '&hellip;'  ) {
+/*
+function domino( $length = 200, $more = '&hellip;'  ) {
 	echo get_mtphr_members_excerpt( $length, $more );
 }
 function get_mtphr_members_excerpt( $length = 200, $more = '&hellip;' ) {
@@ -92,6 +93,7 @@ function get_mtphr_members_excerpt( $length = 200, $more = '&hellip;' ) {
 	}
 	return $output;
 }
+*/
 
 
 
@@ -253,62 +255,62 @@ function mtphr_members_remove_widgets( $params ) {
 /**
  * Get an array of social links
  *
- * @since 1.0.5
+ * @since 1.0.6
  */
 function mtphr_members_social_sites_array() {
 
 	$social_sites = array(
-		'twitter' => 'Twitter',
-		'facebook' => 'Facebook',
-		'linkedin' => 'LinkedIn',
-		'googleplus' => 'Google+',
-		'pinterest' => 'Pinterest',
-		'flickr' => 'Flickr',
-		'tripadvisor' => 'TripAdvisor',
-		'reddit' => 'reddit',
-		'posterous' => 'Posterous',
-		'plurk' => 'Plurk',
-		'ebay' => 'eBay',
-		'netvibes' => 'Netvibes',
-		'picasa' => 'Picasa',
-		'digg' => 'Digg',
-		'newsvine' => 'Newsvine',
-		'rss' => 'RSS',
-		'stumbleupon' => 'StumbleUpon',
 		'aim' => 'AIM',
-		'youtube' => 'YouTube',
+		'amazon' => 'Amazon',
+		'android' => 'Android',
+		'apple' => 'Apple',
+		'bebo' => 'Bebo',
+		'behance' => 'Behance',
+		'bing' => 'Bing',
+		'blogger' => 'Blogger',
+		'cargo' => 'Cargo',
+		'delicious' => 'Delicious',
+		'deviantart' => 'deviantART',
+		'digg' => 'Digg',
+		'dribble' => 'Dribble',
+		'ebay' => 'eBay',
+		'ember' => 'Ember',
+		'evernote' => 'Evernote',
+		'facebook' => 'Facebook',
+		'feedburner' => 'Feedburner',
+		'flickr' => 'Flickr',
+		'googleplus' => 'Google+',
+		'googletalk' => 'Google Talk',
+		'grooveshark' => 'Grooveshark',
 		'lastfm' => 'Last.fm',
-		'myspace' => 'Myspace',
+		'linkedin' => 'LinkedIn',
+		'magnolia' => 'Magnolia',
+		'metacafe' => 'Metacafe',
+		'mixx' => 'Mixx',
+		'mobileme' => 'MobileMe',
 		'msn' => 'MSN',
+		'myspace' => 'Myspace',
+		'netvibes' => 'Netvibes',
+		'newsvine' => 'Newsvine',
+		'orkut' => 'Orkut',
 		'paypal' => 'PayPal',
+		'picasa' => 'Picasa',
+		'pinterest' => 'Pinterest',
+		'plurk' => 'Plurk',
+		'posterous' => 'Posterous',
+		'reddit' => 'reddit',
+		'rss' => 'RSS',
+		'skype' => 'Skype',
+		'stumbleupon' => 'StumbleUpon',
+		'tripadvisor' => 'TripAdvisor',
+		'tumblr' => 'Tumblr',
+		'twitter' => 'Twitter',
+		'vimeo' => 'Vimeo',
 		'windows' => 'Windows',
 		'wordpress' => 'WordPress',
 		'yahoo' => 'Yahoo!',
-		'dribble' => 'Dribble',
-		'apple' => 'Apple',
-		'bebo' => 'Bebo',
-		'cargo' => 'Cargo',
-		'ember' => 'Ember',
-		'evernote' => 'Evernote',
-		'googletalk' => 'Google Talk',
-		'skype' => 'Skype',
-		'feedburner' => 'Feedburner',
-		'tumblr' => 'Tumblr',
-		'android' => 'Android',
-		'bing' => 'Bing',
-		'metacafe' => 'Metacafe',
-		'orkut' => 'Orkut',
-		'delicious' => 'Delicious',
-		'amazon' => 'Amazon',
-		'grooveshark' => 'Grooveshark',
-		'deviantart' => 'deviantART',
-		'behance' => 'Behance',
-		'vimeo' => 'Vimeo',
-		'mobileme' => 'MobileMe',
-		'magnolia' => 'Magnolia',
-		'mixx' => 'Mixx',
-		'blogger' => 'Blogger',
-		'yahoobuzz' => 'Yahoo! Buzz'
+		'yahoobuzz' => 'Yahoo! Buzz',
+		'youtube' => 'YouTube'
 	);
 
 	return $social_sites;
@@ -316,27 +318,214 @@ function mtphr_members_social_sites_array() {
 
 
 
+/* --------------------------------------------------------- */
+/* !Display the thumbnail - 1.0.7 */
+/* --------------------------------------------------------- */
 
-/**
- * Display the social links
- *
- * @since 1.0.0
- */
-function mtphr_members_social_sites( $id ) {
+if( !function_exists('mtphr_members_thumbnail_display') ) {
+function mtphr_members_thumbnail_display( $post_id=false, $permalink=false, $disable_permalinks=false ) {
+	echo get_mtphr_members_thumbnail_display( $post_id, $permalink, $disable_permalinks );
+}
+}
+if( !function_exists('get_mtphr_members_thumbnail_display') ) {
+function get_mtphr_members_thumbnail_display( $post_id=false, $permalink=false, $disable_permalinks=false ) {
 
-	$sites = get_post_meta( $id, '_mtphr_members_social', true );
-	$new_tab = get_post_meta( $id, '_mtphr_members_social_new_tab', true );
+	$post_id = $post_id ? $post_id : get_the_id();
+	$permalink = $permalink ? $permalink : get_permalink( $post_id );
 
-	if( isset($sites[0]) ) {
+	if( $thumb_id = get_post_thumbnail_id($post_id) ) {
 
-		$t = ( $new_tab ) ? ' target="_blank"' : '';
-		echo '<div class="mtphr-members-social-links clearfix">';
-
-		foreach( $sites as $site ) {
-			echo '<a class="mtphr-members-social-site" href="'.esc_url($site['link']).'"'.$t.'><i class="mtphr-socon-'.$site['site'].'"></i></a>';
-		}
-
-		echo '</div>';
+		$thumb_size = apply_filters( 'mtphr_members_thumbnail_size', 'thumbnail' );
+		$thumbnail = get_mtphr_members_thumbnail( $post_id, $thumb_size );
+		$thumbnail = $disable_permalinks ? $thumbnail : '<a href="'.$permalink.'">'.$thumbnail.'</a>';
+		return apply_filters( 'mtphr_members_thumbnail', $thumbnail, $thumb_size, $permalink, $disable_permalinks );
 	}
 }
+}
+if( !function_exists('get_mtphr_members_thumbnail') ) {
+function get_mtphr_members_thumbnail( $post_id=false, $thumb_size=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+	$thumb_size = $thumb_size ? $thumb_size : apply_filters( 'mtphr_members_thumbnail_size', 'thumbnail' );
+
+	if( $thumb_id = get_post_thumbnail_id($post_id) ) {
+		return get_the_post_thumbnail( $post_id, $thumb_size );
+	}
+}
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the name - 1.0.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_members_name_display') ) {
+function mtphr_members_name_display( $post_id=false, $permalink=false, $disable_permalinks=false ) {
+	echo get_mtphr_members_name_display( $post_id, $permalink, $disable_permalinks );
+}
+}
+if( !function_exists('get_mtphr_members_name_display') ) {
+function get_mtphr_members_name_display( $post_id=false, $permalink=false, $disable_permalinks=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+	$permalink = $permalink ? $permalink : get_permalink( $post_id );
+
+	$member_name = get_mtphr_members_name( $post_id );
+	if( $disable_permalinks ) {
+		echo '<h3 class="mtphr-members-name">'.$member_name.'</h3>';
+	} else {
+		echo '<h3 class="mtphr-members-name"><a href="'.$permalink.'">'.$member_name.'</a></h3>';
+	}
+}
+}
+if( !function_exists('get_mtphr_members_name') ) {
+function get_mtphr_members_name( $post_id=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	return apply_filters( 'mtphr_members_archive_name', get_the_title($post_id) );
+}
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the title - 1.0.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_members_title_display') ) {
+function mtphr_members_title_display( $post_id=false ) {
+
+	echo get_mtphr_members_title_display( $post_id );
+}
+}
+if( !function_exists('get_mtphr_members_title_display') ) {
+function get_mtphr_members_title_display( $post_id=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	$html = '';
+	if( $title = get_mtphr_members_title($post_id) ) {
+		$html .= '<p class="mtphr-members-title">'.$title.'</p>';
+	}
+	return $html;
+}
+}
+if( !function_exists('get_mtphr_members_title') ) {
+function get_mtphr_members_title( $post_id=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	return apply_filters( 'mtphr_members_archive_title', get_post_meta($post_id, '_mtphr_members_title', true) );
+}
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the contact info - 1.0.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_members_info_display') ) {
+function mtphr_members_info_display( $post_id=false ) {
+
+	echo get_mtphr_members_info_display( $post_id );
+}
+}
+if( !function_exists('get_mtphr_members_info_display') ) {
+function get_mtphr_members_info_display( $post_id=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	$html = '';
+	$contact_info = get_post_meta( $post_id, '_mtphr_members_contact_info', true );
+	if( is_array($contact_info) && count($contact_info) > 0 ) {
+
+		$html .= '<table class="mtphr-members-info">';
+		foreach( $contact_info as $i=>$info ) {
+			$html .= '<tr>';
+			if( $info['title'] != '' ) {
+				$html .= '<th class="mtphr-members-info-title">'.apply_filters('the_content', $info['title']).'</th>';
+				$html .= '<td>'.apply_filters('the_content', make_clickable($info['description'])).'</td>';
+			} else {
+				$html .= '<td colspan="2">'.apply_filters('the_content', make_clickable($info['description'])).'</td>';
+			}
+			$html .= '</tr>';
+		}
+		$html .= '</table>';
+	}
+	return $html;
+}
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the social links - 1.0.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_members_social_sites_display') ) {
+function mtphr_members_social_sites_display( $post_id=false ) {
+	echo get_mtphr_members_social_sites_display( $post_id );
+}
+}
+if( !function_exists('get_mtphr_members_social_sites_display') ) {
+function get_mtphr_members_social_sites_display( $post_id=false ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+	$sites = get_post_meta( $post_id, '_mtphr_members_social', true );
+	$new_tab = get_post_meta( $post_id, '_mtphr_members_social_new_tab', true );
+
+	$html = '';
+	if( isset($sites[0]) ) {
+		$t = ( $new_tab ) ? ' target="_blank"' : '';
+		$html .= '<div class="mtphr-members-social-links clearfix">';
+		foreach( $sites as $site ) {
+			$html .= '<a class="mtphr-members-social-site" href="'.esc_url($site['link']).'"'.$t.'><i class="mtphr-socon-'.$site['site'].'"></i></a>';
+		}
+		$html .= '</div>';
+	}
+	return $html;
+}
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the excerpt - 1.0.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_members_excerpt_display') ) {
+function mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;' ) {
+	echo get_mtphr_members_excerpt_display( $post_id, $excerpt_length, $excerpt_more );
+}
+}
+if( !function_exists('get_mtphr_members_excerpt_display') ) {
+function get_mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;' ) {
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	$html = '';
+	if( $excerpt_length > 0 ) {
+
+		$links = array();
+		preg_match('/{(.*?)\}/s', $excerpt_more, $links);
+		if( isset($links[0]) ) {
+			$more_link = '<a href="'.get_permalink($post_id).'">'.$links[1].'</a>';
+			$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+		}
+		if( !$excerpt = get_the_excerpt() ) {
+			$post = get_post( $post_id );
+			$excerpt = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
+		}
+		$excerpt = wp_html_excerpt( $excerpt, intval($excerpt_length) );
+		$excerpt .= $excerpt_more;
+		$html .= '<p class="mtphr-members-excerpt">'.apply_filters( 'mtphr_members_excerpt', $excerpt, $excerpt_length, $excerpt_more ).'</p>';
+	}
+	return $html;
+}
+}
+
+
 
