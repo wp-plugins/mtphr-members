@@ -12,7 +12,7 @@ add_shortcode( 'mtphr_members_archive', 'mtphr_members_archive_display' );
 /**
  * Display the members archive.
  *
- * @since 1.0.5
+ * @since 1.0.7
  */
 function mtphr_members_archive_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -23,7 +23,8 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		'categories' => false,
 		'excerpt_length' => 140,
 		'excerpt_more' => '&hellip;',
-		'assets' => 'thumbnail,name,social,title,excerpt'
+		'assets' => 'thumbnail,name,social,title,excerpt',
+		'disable_permalinks' => false
 	), $atts ) );
 
 	// Set the responsiveness of the grid
@@ -48,12 +49,12 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		'posts_per_page' => intval($posts_per_page)
 	);
 	if( $categories ) {
-		$categories = explode(',', $categories);
+		$category_array = explode(',', $categories);
 		$args['tax_query'] = array(
 			array(
 				'taxonomy' => 'mtphr_member_category',
 				'field' => 'slug',
-				'terms' => $categories
+				'terms' => $category_array
 			)
 		);
 	}
@@ -83,61 +84,37 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		<div class="mtphr-members-grid<?php echo $span; ?>">
 
 			<?php do_action( 'mtphr_members_before' ); ?>
-			<<?php echo $container; ?> id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<<?php echo $container; ?> id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?>>
 				<?php do_action( 'mtphr_members_top' ); ?>
 
 				<?php
+				$permalink = ( $categories ) ? add_query_arg( array('taxonomy' => 'mtphr_member_category', 'terms' => $categories), get_permalink() ) : remove_query_arg( array('taxonomy', 'terms'), get_permalink() );
 				foreach( $asset_order as $asset ) {
 
 					switch( trim($asset) ) {
 
 						case 'thumbnail':
-
-							// Display the member thumb
-							if( $thumb_id = get_post_thumbnail_id() ) {
-
-								// Get the thumb image
-								$thumb_size = apply_filters( 'mtphr_members_thumbnail_size', 'thumbnail' );
-								$thumbnail = get_the_post_thumbnail( get_the_id(), $thumb_size );
-								$thumbnail = '<a href="'.get_permalink().'">'.$thumbnail.'</a>';
-								echo apply_filters( 'mtphr_members_thumbnail', $thumbnail, $thumb_size );
-							}
+							mtphr_members_thumbnail_display( get_the_id(), $permalink, $disable_permalinks );
 							break;
 
 						case 'name':
-
-							// Display the member name
-							echo '<h3 class="mtphr-members-name"><a href="'.get_permalink().'">'.apply_filters( 'mtphr_members_archive_name', get_the_title() ).'</a></h3>';
+							mtphr_members_name_display( get_the_id(), $permalink, $disable_permalinks );
 							break;
 
 						case 'social':
-							mtphr_members_social_sites( get_the_id() );
+							mtphr_members_social_sites_display( get_the_id() );
 							break;
 
 						case 'title':
-							// Display the member title
-							if($title = get_post_meta( get_the_ID(), '_mtphr_members_title', true) ) {
-								echo '<p class="mtphr-members-title">'.apply_filters( 'mtphr_members_archive_title', $title ).'</p>';
-							}
+							mtphr_members_title_display( get_the_id() );
+							break;
+
+						case 'info':
+							mtphr_members_info_display( get_the_id() );
 							break;
 
 						case 'excerpt':
-
-							// Get the excerpt
-							$excerpt = '';
-							if( $excerpt_length > 0 ) {
-
-								$links = array();
-								preg_match('/{(.*?)\}/s', $excerpt_more, $links);
-								if( isset($links[0]) ) {
-									$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
-									$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
-								}
-								$excerpt = get_mtphr_members_excerpt( $excerpt_length, $excerpt_more );
-							}
-
-							// Display the member excerpt
-							echo '<p class="mtphr-members-excerpt">'.apply_filters( 'mtphr_members_excerpt', $excerpt, $excerpt_length, $excerpt_more ).'</p>';
+							mtphr_members_excerpt_display( get_the_id(), $excerpt_length, $excerpt_more );
 							break;
 					}
 				}

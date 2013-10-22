@@ -3,9 +3,7 @@
 * Grid
 * General
 * Social Links
-* Single
-* Archive
-* Post & Slider Blocks
+* Contact Info
 
 */
 
@@ -214,6 +212,21 @@
 	line-height: 20px;
 	text-align: center;
 	background-color: #CCC;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Contact Info */
+/* --------------------------------------------------------- */
+
+.mtphr-members-info {
+	border-spacing: 0;
+}
+.mtphr-members-info .mtphr-members-info-title {
+	padding-right: 10px;
+}
+.mtphr-members-info p {
+	margin-bottom: 0;
 }
 
 

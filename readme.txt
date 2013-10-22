@@ -1,6 +1,6 @@
 === Metaphor Members ===
 Contributors: metaphorcreations
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FUZKZGAJSBAE6
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5SY9RRTQQ4ABN
 Tags: custom post type, members, team, team members, member info, info
 Requires at least: 3.2
 Tested up to: 3.5.1
@@ -61,6 +61,17 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.7 =
+* Added contact info option to archive shortcode
+* Added "disable permalinks" option to archive shortcode
+* Broke down functions for member asset display
+
+= 1.0.6 =
+* Added clearfix class to article wrapper
+* Modified the archive excerpt code
+* Added taxonomy query args to archive permalinks
+* Re-ordered social links alphabetically
+
 = 1.0.5 =
 * Replaced social icon sprites with custom social font.
 * PHP & CSS adjustments made due to implementation of custom font.
@@ -86,21 +97,5 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-Replaced social icon sprites with custom social font. PHP & CSS adjustments made due to implementation of custom font. Fixed localization script.
-
-= 1.0.4 =
-Bug fix for auto widget removal.
-
-= 1.0.3 =
-Added member category taxonomy. Updated archive shortcode to filter by categories. Updated Metaphor Widget Overrides to remove unused widgets.
-
-= 1.0.2 =
-Updated css classes for responsive and non-responsive site. Added filter to set responsiveness.
-
-= 1.0.1 =
-Added respond.js to add media queries for older browsers.
-
-= 1.0.0 =
-Initial upload of Metaphor Members.
+Multiple archive shortcode updates.
 
