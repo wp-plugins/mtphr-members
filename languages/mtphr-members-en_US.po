@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Members v1.0.5\n"
+"Project-Id-Version: Metaphor Members v1.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-11 17:12:21+0000\n"
+"PO-Revision-Date: 2013-11-13 19:47:52+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -187,56 +187,56 @@ msgstr "Metaphor Twitter Widget"
 msgid "Metaphor Widgets Overrides"
 msgstr "Metaphor Widgets Overrides"
 
-#: includes/post-types.php:27
-#: includes/post-types.php:28
-#: includes/post-types.php:38
+#: includes/post-types.php:29
+#: includes/post-types.php:30
+#: includes/post-types.php:40
 #, php-format
 #@ mtphr-members
 msgid "%1$s"
 msgstr "%1$s"
 
-#: includes/post-types.php:29
+#: includes/post-types.php:31
 #@ mtphr-members
 msgid "Add New"
 msgstr "Add New"
 
-#: includes/post-types.php:30
+#: includes/post-types.php:32
 #, php-format
 #@ mtphr-members
 msgid "Add New %1$s"
 msgstr "Add New %1$s"
 
-#: includes/post-types.php:31
+#: includes/post-types.php:33
 #, php-format
 #@ mtphr-members
 msgid "Edit %1$s"
 msgstr "Edit %1$s"
 
-#: includes/post-types.php:32
+#: includes/post-types.php:34
 #, php-format
 #@ mtphr-members
 msgid "New %1$s"
 msgstr "New %1$s"
 
-#: includes/post-types.php:33
+#: includes/post-types.php:35
 #, php-format
 #@ mtphr-members
 msgid "View %1$s"
 msgstr "View %1$s"
 
-#: includes/post-types.php:34
+#: includes/post-types.php:36
 #, php-format
 #@ mtphr-members
 msgid "Search %1$s"
 msgstr "Search %1$s"
 
-#: includes/post-types.php:35
+#: includes/post-types.php:37
 #, php-format
 #@ mtphr-members
 msgid "No %1$s Found"
 msgstr "No %1$s Found"
 
-#: includes/post-types.php:36
+#: includes/post-types.php:38
 #, php-format
 #@ mtphr-members
 msgid "No %1$s Found in Trash"
@@ -247,17 +247,17 @@ msgstr "No %1$s Found in Trash"
 msgid "members"
 msgstr "members"
 
-#: includes/settings.php:104
+#: includes/settings.php:126
 #@ mtphr-members
 msgid "Member Settings"
 msgstr "Member Settings"
 
-#: includes/shortcodes.php:170
+#: includes/shortcodes.php:153
 #@ mtphr-members
 msgid "Newer"
 msgstr "Newer"
 
-#: includes/shortcodes.php:173
+#: includes/shortcodes.php:156
 #@ mtphr-members
 msgid "Older"
 msgstr "Older"
@@ -292,7 +292,7 @@ msgstr "Plural Label"
 msgid "Set the plural label for the member post type."
 msgstr "Set the plural label for the member post type."
 
-#: includes/settings.php:128
+#: includes/settings.php:150
 #@ mtphr-members
 msgid "<h4>Default settings for the Metaphor Members post type.</h4>"
 msgstr "<h4>Default settings for the Metaphor Members post type.</h4>"
@@ -357,4 +357,40 @@ msgstr "New CategoryNew Category"
 #@ mtphr-members
 msgid "Categories"
 msgstr "Categories"
+
+#: includes/settings.php:65
+#: includes/settings.php:70
+#@ mtphr-members
+msgid "Public"
+msgstr ""
+
+#: includes/settings.php:66
+#@ mtphr-members
+msgid "Set whether or not the post type should be public and has single posts."
+msgstr ""
+
+#: includes/settings.php:69
+#@ mtphr-members
+msgid "Not Public"
+msgstr ""
+
+#: includes/settings.php:76
+#@ mtphr-members
+msgid "Has Archive"
+msgstr ""
+
+#: includes/settings.php:77
+#@ mtphr-members
+msgid "Set whether or not the post type has an archive page."
+msgstr ""
+
+#: includes/settings.php:80
+#@ mtphr-members
+msgid "No Archive Page"
+msgstr ""
+
+#: includes/settings.php:81
+#@ mtphr-members
+msgid "Has Archive Page"
+msgstr ""
 

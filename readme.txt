@@ -61,6 +61,10 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.9 =
+* Added setting for post type "public" attribute
+* Added setting for post type "has_archive" attribute
+
 = 1.0.8 =
 * Added full content option for archive excerpt (use "excerpt_length = -1")
 
@@ -100,5 +104,5 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added full content option for archive excerpt (use "excerpt_length = -1").
+Added settings for post type "public" and "has_archive" attributes.
 

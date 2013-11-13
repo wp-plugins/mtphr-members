@@ -32,7 +32,7 @@ add_post_type_support( 'mtphr_member', 'woosidebars' );
  * Return a value from the options table if it exists,
  * or return a default value
  *
- * @since 1.0.0
+ * @since 1.0.9
  */
 function mtphr_members_settings() {
 
@@ -42,7 +42,9 @@ function mtphr_members_settings() {
 	$defaults = array(
 		'slug' => 'members',
 		'singular_label' => __( 'Member', 'mtphr-members' ),
-		'plural_label' => __( 'Members', 'mtphr-members' )
+		'plural_label' => __( 'Members', 'mtphr-members' ),
+		'public' => 'true',
+		'has_archive' => 'false',
 	);
 	$defaults = apply_filters( 'mtphr_members_default_settings', $defaults );
 
@@ -493,16 +495,16 @@ function get_mtphr_members_social_sites_display( $post_id=false ) {
 
 
 /* --------------------------------------------------------- */
-/* !Display the excerpt - 1.0.7 */
+/* !Display the excerpt - 1.0.9 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_members_excerpt_display') ) {
-function mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;' ) {
-	echo get_mtphr_members_excerpt_display( $post_id, $excerpt_length, $excerpt_more );
+function mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;', $disable_permalinks=false ) {
+	echo get_mtphr_members_excerpt_display( $post_id, $excerpt_length, $excerpt_more, $disable_permalinks );
 }
 }
 if( !function_exists('get_mtphr_members_excerpt_display') ) {
-function get_mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;' ) {
+function get_mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140, $excerpt_more='&hellip;', $disable_permalinks=false ) {
 
 	$post_id = $post_id ? $post_id : get_the_id();
 
@@ -511,7 +513,7 @@ function get_mtphr_members_excerpt_display( $post_id=false, $excerpt_length=140,
 	$links = array();
 	preg_match('/{(.*?)\}/s', $excerpt_more, $links);
 	if( isset($links[0]) ) {
-		$more_link = '<a href="'.get_permalink($post_id).'">'.$links[1].'</a>';
+		$more_link = $disable_permalinks ? $links[1] : '<a href="'.get_permalink($post_id).'">'.$links[1].'</a>';
 		$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
 	}
 	if( $excerpt_length <= 0 ) {
