@@ -33,7 +33,7 @@ add_action( 'admin_init', 'mtphr_members_initialize_settings' );
 /**
  * Initializes the options page.
  *
- * @since 1.0.0
+ * @since 1.0.9
  */ 
 function mtphr_members_initialize_settings() {
 	
@@ -59,6 +59,28 @@ function mtphr_members_initialize_settings() {
 		'default' => __( 'Members', 'mtphr-members' ),
 		'size' => 20,
 		'description' => __('Set the plural label for the member post type.', 'mtphr-members')
+	);
+	
+	$settings['public'] = array(
+		'title' => __( 'Public', 'mtphr-members' ),
+		'description' => __('Set whether or not the post type should be public and has single posts.', 'mtphr-members'),
+		'type' => 'select',
+		'options' => array(
+			'false' => __('Not Public', 'mtphr-members'),
+			'true' => __('Public', 'mtphr-members')
+		),
+		'default' => 'true'
+	);
+	
+	$settings['has_archive'] = array(
+		'title' => __( 'Has Archive', 'mtphr-members' ),
+		'description' => __('Set whether or not the post type has an archive page.', 'mtphr-members'),
+		'type' => 'select',
+		'options' => array(
+			'false' => __('No Archive Page', 'mtphr-members'),
+			'true' => __('Has Archive Page', 'mtphr-members')
+		),
+		'default' => 'false'
 	);
 
 	if( false == get_option('mtphr_members_settings') ) {	

@@ -12,7 +12,7 @@ add_shortcode( 'mtphr_members_archive', 'mtphr_members_archive_display' );
 /**
  * Display the members archive.
  *
- * @since 1.0.7
+ * @since 1.0.9
  */
 function mtphr_members_archive_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -26,6 +26,12 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 		'assets' => 'thumbnail,name,social,title,excerpt',
 		'disable_permalinks' => false
 	), $atts ) );
+	
+	// Override permalinks based on public attribute
+	$mtphr_member = get_post_type_object('mtphr_member');
+	if( !$mtphr_member->public ) {
+		$disable_permalinks = true;
+	}
 
 	// Set the responsiveness of the grid
 	$row = apply_filters( 'mtphr_members_responsive_grid', false );
@@ -114,7 +120,7 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 							break;
 
 						case 'excerpt':
-							mtphr_members_excerpt_display( get_the_id(), $excerpt_length, $excerpt_more );
+							mtphr_members_excerpt_display( get_the_id(), $excerpt_length, $excerpt_more, $disable_permalinks );
 							break;
 					}
 				}
