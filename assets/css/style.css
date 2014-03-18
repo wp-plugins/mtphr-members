@@ -198,6 +198,7 @@
 /* Social Links
 ------------------------------------------------------------ */
 
+/*
 .mtphr-members-social-site {
 	float: left;
 	display: block;
@@ -213,12 +214,14 @@
 	text-align: center;
 	background-color: #CCC;
 }
+*/
 
 
 /* --------------------------------------------------------- */
 /* !Contact Info */
 /* --------------------------------------------------------- */
 
+/*
 .mtphr-members-info {
 	border-spacing: 0;
 }
@@ -228,5 +231,23 @@
 .mtphr-members-info p {
 	margin-bottom: 0;
 }
+*/
 
+
+/* --------------------------------------------------------- */
+/* !Twitter */
+/* --------------------------------------------------------- */
+
+.mtphr-member-twitter ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.mtphr-member-twitter ul li {
+	position: relative;
+	margin-bottom: 20px;
+}
+.mtphr-member-twitter ul li.show-image {
+	padding-left: 40px;
+}
 

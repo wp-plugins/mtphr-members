@@ -2,7 +2,7 @@
 /*
 Plugin Name: Metaphor Members
 Description: Adds a custom post type to easily create a collection of members. Add a member archive to any page with shortcodes.
-Version: 1.0.9
+Version: 1.1.0
 Author: Metaphor Creations
 Author URI: http://www.metaphorcreations.com
 License: GPL2
@@ -40,9 +40,9 @@ The icons are licensed under a Creative Commons Attribution
 
 /**Define Widget Constants */
 if ( WP_DEBUG ) {
-	define ( 'MTPHR_MEMBERS_VERSION', '1.0.9-'.time() );
+	define ( 'MTPHR_MEMBERS_VERSION', '1.1.0-'.time() );
 } else {
-	define ( 'MTPHR_MEMBERS_VERSION', '1.0.9' );
+	define ( 'MTPHR_MEMBERS_VERSION', '1.1.0' );
 }
 define ( 'MTPHR_MEMBERS_DIR', plugin_dir_path(__FILE__) );
 define ( 'MTPHR_MEMBERS_URL', plugins_url().'/mtphr-members' );
@@ -54,15 +54,18 @@ define ( 'MTPHR_MEMBERS_URL', plugins_url().'/mtphr-members' );
 require_once( MTPHR_MEMBERS_DIR.'includes/scripts.php' );
 require_once( MTPHR_MEMBERS_DIR.'includes/post-types.php' );
 require_once( MTPHR_MEMBERS_DIR.'includes/taxonomies.php' );
+require_once( MTPHR_MEMBERS_DIR.'includes/helpers.php' );
+require_once( MTPHR_MEMBERS_DIR.'includes/filters.php' );
 require_once( MTPHR_MEMBERS_DIR.'includes/functions.php' );
+require_once( MTPHR_MEMBERS_DIR.'includes/display.php' );
 require_once( MTPHR_MEMBERS_DIR.'includes/shortcodes.php' );
+require_once( MTPHR_MEMBERS_DIR.'includes/deprecated.php' );
+require_once( MTPHR_MEMBERS_DIR.'includes/wpml.php' );
 
 // Load the admin functions
 if ( is_admin() ) {
-	require_once( MTPHR_MEMBERS_DIR.'includes/metaboxer/metaboxer.php' );
-	require_once( MTPHR_MEMBERS_DIR.'includes/metaboxer/metaboxer-class.php' );
 	require_once( MTPHR_MEMBERS_DIR.'includes/meta-boxes.php' );
-	require_once( MTPHR_MEMBERS_DIR.'includes/edit-columns.php' );
+	require_once( MTPHR_MEMBERS_DIR.'includes/shortcode-gen.php' );
 	require_once( MTPHR_MEMBERS_DIR.'includes/settings.php' );
 }
 
