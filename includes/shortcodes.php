@@ -1,19 +1,85 @@
 <?php
-/**
- * Shortcodes
- *
- * @package Metaphor Members
- */
+
+/* --------------------------------------------------------- */
+/* !Display the member title shortcode - 1.1.0 */
+/* --------------------------------------------------------- */
+
+function mtphr_member_title_shortcode( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'id' => false,
+		'element' => 'h3',
+		'before' => '',
+		'after' => '',
+		'class' => ''
+	), $atts ) );
+	
+	return get_mtphr_member_title( $id, $element, $before, $after, $class );
+}
+add_shortcode( 'mtphr_member_title', 'mtphr_member_title_shortcode' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Display the member contact info shortcode - 1.1.0 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'mtphr_members_archive', 'mtphr_members_archive_display' );
-/**
- * Display the members archive.
- *
- * @since 1.0.9
- */
+function mtphr_member_contact_info_shortcode( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'id' => false,
+		'title' => '',
+		'title_element' => 'h3',
+		'class' => ''
+	), $atts ) );
+	
+	return get_mtphr_member_contact_info( $id, $title, $title_element, $class );
+}
+add_shortcode( 'mtphr_member_contact_info', 'mtphr_member_contact_info_shortcode' );
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the member social sites shortcode - 1.1.0 */
+/* --------------------------------------------------------- */
+
+function mtphr_member_social_sites_shortcode( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'id' => false,
+		'title' => '',
+		'title_element' => 'h3',
+		'class' => ''
+	), $atts ) );
+	
+	return get_mtphr_member_social_sites( $id, $title, $title_element, $class );
+}
+add_shortcode( 'mtphr_member_social_sites', 'mtphr_member_social_sites_shortcode' );
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the member twitter shortcode - 1.1.0 */
+/* --------------------------------------------------------- */
+
+function mtphr_member_twitter_shortcode( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'id' => false,
+		'title' => '',
+		'title_element' => 'h3',
+		'limit' => 3,
+		'image' => false,
+		'avatar' => false,
+		'class' => ''
+	), $atts ) );
+	
+	return get_mtphr_member_twitter( $id, $title, $title_element, $limit, $image, $avatar, $class );
+}
+add_shortcode( 'mtphr_member_twitter', 'mtphr_member_twitter_shortcode' );
+
+
+
+/* --------------------------------------------------------- */
+/* !Display the members archive - 1.0.9 */
+/* --------------------------------------------------------- */
+
 function mtphr_members_archive_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'posts_per_page' => 9,
@@ -98,7 +164,7 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 				foreach( $asset_order as $asset ) {
 
 					switch( trim($asset) ) {
-
+					
 						case 'thumbnail':
 							mtphr_members_thumbnail_display( get_the_id(), $permalink, $disable_permalinks );
 							break;
@@ -106,17 +172,21 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 						case 'name':
 							mtphr_members_name_display( get_the_id(), $permalink, $disable_permalinks );
 							break;
-
-						case 'social':
-							mtphr_members_social_sites_display( get_the_id() );
-							break;
-
+							
 						case 'title':
-							mtphr_members_title_display( get_the_id() );
+							mtphr_member_title( false, 'p' );
 							break;
 
 						case 'info':
-							mtphr_members_info_display( get_the_id() );
+							mtphr_member_contact_info();
+							break;
+							
+						case 'social':
+							mtphr_member_social_sites();
+							break;
+							
+						case 'twitter':
+							mtphr_member_twitter( false, '', '', 1 );
 							break;
 
 						case 'excerpt':
@@ -174,3 +244,4 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 	// Return the output
 	return ob_get_clean();
 }
+add_shortcode( 'mtphr_members_archive', 'mtphr_members_archive_display' );

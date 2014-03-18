@@ -47,6 +47,7 @@ function mtphr_members_posttype() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'menu_icon' => 'dashicons-groups',
 		'query_var' => true,
 		'rewrite' => true,
 		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),

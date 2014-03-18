@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5SY9RRTQQ4ABN
 Tags: custom post type, members, team, team members, member info, info
 Requires at least: 3.2
-Tested up to: 3.5.1
+Tested up to: 3.8.1
 Stable tag: /trunk/
 License: GPL2
 
@@ -61,6 +61,15 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.1.0 =
+* Updated menu icon to dash-icon
+* Updated settings page code
+* Converted some member attributes to require Metaphor Widgets
+* Added member attribute display functions
+* New shortcodes
+* Added shortcode generator capabilities
+* Integrated WPML for multi-language sites
+
 = 1.0.9 =
 * Added setting for post type "public" attribute
 * Added setting for post type "has_archive" attribute
@@ -104,5 +113,5 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added settings for post type "public" and "has_archive" attributes.
+Multiple updates. See notes.
 
