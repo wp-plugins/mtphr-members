@@ -61,6 +61,13 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.1.1 =
+* Modified metabox code for easier manipulation
+* Additional actions & filters in metabox code
+* Added "mtphr_members_info_meta" filter
+* Added "mtphr_members_info_metabox_middle" action
+* Added "mtphr_members_widgets_metabox_middle" action
+
 = 1.1.0 =
 * Updated menu icon to dash-icon
 * Updated settings page code
@@ -113,5 +120,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Multiple updates. See notes.
-
+Updated metabox code and added additional metabox filters
