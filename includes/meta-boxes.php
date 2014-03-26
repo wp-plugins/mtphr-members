@@ -14,7 +14,7 @@ add_action( 'add_meta_boxes', 'mtphr_members_rotator_metabox' );
 
 
 /* --------------------------------------------------------- */
-/* !Render the gallery settings metabox - 1.10 */
+/* !Render the gallery settings metabox - 1.1.1 */
 /* --------------------------------------------------------- */
 
 function mtphr_member_settings_render_metabox() {
@@ -62,6 +62,15 @@ function mtphr_member_settings_render_metabox() {
 		$tabs['widgets'] = __('Widget Overrides', 'mtphr-members');
 	}
 	$tabs = apply_filters( 'mtphr_members_tabs', $tabs );
+	
+	// Filter the info meta
+	$info_meta = apply_filters( 'mtphr_members_info_meta', array(
+		'title' => 'title',
+		'contact_info' => 'contact_info',
+		'filter' => 'filter',
+		'social_sites' => 'social_sites',
+		'twitter' => 'twitter'
+	));	
 
 	echo '<input type="hidden" name="mtphr_members_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
 
@@ -80,7 +89,7 @@ function mtphr_member_settings_render_metabox() {
 
 
 		/* --------------------------------------------------------- */
-		/* !Member Info - 1.1.0 */
+		/* !Member Info - 1.1.1 */
 		/* --------------------------------------------------------- */
 		
 		if( isset($tabs['info']) ) {
@@ -90,64 +99,96 @@ function mtphr_member_settings_render_metabox() {
 				do_action('mtphr_members_info_metabox_before');
 				echo '<table class="mtphr-members-table">';
 					do_action('mtphr_members_info_metabox_top');
-	
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Member title', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Add a title for the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							echo '<input type="text" name="_mtphr_members_title" value="'.$title.'" />';
-						echo '</td>';
-					echo '</tr>';
-	
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Contact info', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Add info associated with the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( function_exists('metaphor_widgets_contact_setup') ) {
-								echo metaphor_widgets_contact_setup( '_mtphr_members_contact_info', $contact_info );
-							} else {
-								$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
-								printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Contact Info for %s.','mtphr-members'), $url, $settings['plural_label']);
+
+					// Display the info meta
+					if( is_array($info_meta) && count($info_meta) > 0 ) {
+						foreach( $info_meta as $i=>$meta ) {
+
+							switch( $meta ) {
+							
+								case 'title':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.sprintf(__('%s title', 'mtphr-members'), $settings['singular_label']).'</label>';
+											echo '<small>'.sprintf(__('Add a title for the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											echo '<input type="text" name="_mtphr_members_title" value="'.$title.'" />';
+										echo '</td>';
+									echo '</tr>';
+									
+									break;
+									
+								case 'contact_info':
+									
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Contact info', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Add info associated with the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( function_exists('metaphor_widgets_contact_setup') ) {
+												echo metaphor_widgets_contact_setup( '_mtphr_members_contact_info', $contact_info );
+											} else {
+												$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
+												printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Contact Info for %s.','mtphr-members'), $url, $settings['plural_label']);
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'social_sites':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Social sites', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Add social sites associated with the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( function_exists('metaphor_widgets_social_setup') ) {
+												echo '<div class="metaphor-widgets-social-icon-container" style="padding:0">';
+													echo metaphor_widgets_social_target( '_mtphr_members_social_new_tab', $social_new );
+												echo '</div>';
+												echo metaphor_widgets_social_setup( '_mtphr_members_social', $social );
+											} else {
+												$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
+												printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Social Sites for %s.','mtphr-members'), $url, $settings['plural_label']);
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'twitter':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Twitter handle', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Add a Twitter handle for the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( function_exists('metaphor_widgets_social_setup') ) {
+												echo '<input type="text" name="_mtphr_members_twitter" value="'.$twitter.'" />';
+											} else {
+												$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
+												printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Tweets for %s.','mtphr-members'), $url, $settings['plural_label']);
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'filter':
+									do_action('mtphr_members_info_metabox_middle');
+									break;
+									
+								default:
+									break;
 							}
-						echo '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Social sites', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Add social sites associated with the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( function_exists('metaphor_widgets_social_setup') ) {
-								echo '<div class="metaphor-widgets-social-icon-container" style="padding:0">';
-									echo metaphor_widgets_social_target( '_mtphr_members_social_new_tab', $social_new );
-								echo '</div>';
-								echo metaphor_widgets_social_setup( '_mtphr_members_social', $social );
-							} else {
-								$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
-								printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Social Sites for %s.','mtphr-members'), $url, $settings['plural_label']);
-							}
-						echo '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Twitter handle', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Add a Twitter handle for the %s', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( function_exists('metaphor_widgets_social_setup') ) {
-								echo '<input type="text" name="_mtphr_members_twitter" value="'.$twitter.'" />';
-							} else {
-								$url = get_bloginfo('wpurl').'/wp-admin/plugin-install.php?tab=plugin-information&plugin=mtphr-widgets&TB_iframe=true&width=640&height=500';
-								printf(__('<a class="thickbox" href="%s"><strong>Metaphor Widgets</strong></a> must be installed & activated to setup Tweets for %s.','mtphr-members'), $url, $settings['plural_label']);
-							}
-						echo '</td>';
-					echo '</tr>';
+						}
+					}
 	
 					do_action('mtphr_members_info_metabox_bottom');
 				echo '</table>';
@@ -158,7 +199,7 @@ function mtphr_member_settings_render_metabox() {
 
 
 		/* --------------------------------------------------------- */
-		/* !Member Widgets - 1.1.0 */
+		/* !Member Widgets - 1.1.1 */
 		/* --------------------------------------------------------- */
 		
 		if( isset($tabs['widgets']) ) {
@@ -190,52 +231,80 @@ function mtphr_member_settings_render_metabox() {
 				do_action('mtphr_members_widgets_metabox_before');
 				echo '<table class="mtphr-members-table">';
 					do_action('mtphr_members_widgets_metabox_top');
-	
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Contact widget override', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Override the following contact widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( is_array($contact_widgets) && count($contact_widgets) > 0 ) {
-								foreach( $contact_widgets as $key=>$widget ) {
-									$checked = array_key_exists( $key, $contact_override ) ? 'checked="checked"' : '';
-									echo '<label><input type="checkbox" name="_mtphr_members_contact_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
-								}
-							}
-						echo '</td>';
-					echo '</tr>';
 					
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Social widget override', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Override the following social widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( is_array($social_widgets) && count($social_widgets) > 0 ) {
-								foreach( $social_widgets as $key=>$widget ) {
-									$checked = array_key_exists( $key, $social_override ) ? 'checked="checked"' : '';
-									echo '<label><input type="checkbox" name="_mtphr_members_social_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
-								}
+					// Display the widget overrides meta
+					if( is_array($info_meta) && count($info_meta) > 0 ) {
+						foreach( $info_meta as $i=>$meta ) {
+						
+							switch( $meta ) {
+							
+								case 'contact_info':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Contact widget override', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Override the following contact widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( is_array($contact_widgets) && count($contact_widgets) > 0 ) {
+												foreach( $contact_widgets as $key=>$widget ) {
+													$checked = array_key_exists( $key, $contact_override ) ? 'checked="checked"' : '';
+													echo '<label><input type="checkbox" name="_mtphr_members_contact_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
+												}
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'social_sites':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Social widget override', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Override the following social widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( is_array($social_widgets) && count($social_widgets) > 0 ) {
+												foreach( $social_widgets as $key=>$widget ) {
+													$checked = array_key_exists( $key, $social_override ) ? 'checked="checked"' : '';
+													echo '<label><input type="checkbox" name="_mtphr_members_social_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
+												}
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'twitter':
+								
+									echo '<tr>';
+										echo '<td class="mtphr-members-label">';
+											echo '<label>'.__('Twitter widget override', 'mtphr-members').'</label>';
+											echo '<small>'.sprintf(__('Override the following twitter widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
+										echo '</td>';
+										echo '<td>';
+											if( is_array($twitter_widgets) && count($twitter_widgets) > 0 ) {
+												foreach( $twitter_widgets as $key=>$widget ) {
+													$checked = array_key_exists( $key, $twitter_override ) ? 'checked="checked"' : '';
+													echo '<label><input type="checkbox" name="_mtphr_members_twitter_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
+												}
+											}
+										echo '</td>';
+									echo '</tr>';
+							
+									break;
+									
+								case 'filter':
+									do_action('mtphr_members_widgets_metabox_middle');
+									break;
+									
+								default:
+									break;			
 							}
-						echo '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo '<td class="mtphr-members-label">';
-							echo '<label>'.__('Twitter widget override', 'mtphr-members').'</label>';
-							echo '<small>'.sprintf(__('Override the following twitter widgets for the %s, if they are active', 'mtphr-members'), strtolower($settings['singular_label'])).'</small>';
-						echo '</td>';
-						echo '<td>';
-							if( is_array($twitter_widgets) && count($twitter_widgets) > 0 ) {
-								foreach( $twitter_widgets as $key=>$widget ) {
-									$checked = array_key_exists( $key, $twitter_override ) ? 'checked="checked"' : '';
-									echo '<label><input type="checkbox" name="_mtphr_members_twitter_override['.$key.']" value="1" '.$checked.' /> '.$widget.'</label><br/>';
-								}
-							}
-						echo '</td>';
-					echo '</tr>';
-	
+						}
+					}
+		
 					do_action('mtphr_members_widgets_metabox_bottom');
 				echo '</table>';
 				do_action('mtphr_members_widgets_metabox_after');
@@ -282,8 +351,8 @@ function mtphr_members_metabox_save( $post_id ) {
 
 		$title = isset($_POST['_mtphr_members_title']) ? sanitize_text_field($_POST['_mtphr_members_title']) : '';
 		$contact_info = $sanitize_contact_info = isset($_POST['_mtphr_members_contact_info']) ? $_POST['_mtphr_members_contact_info'] : '';
+		$sanitize_contact_info = array();
 		if( is_array($contact_info) && count($contact_info) > 0 ) {
-			$sanitize_contact_info = array();
 			foreach( $contact_info as $i=>$info ) {
 				$sanitize_contact_info[] = array(
 					'title' => wp_kses_post($info['title']),
@@ -294,8 +363,8 @@ function mtphr_members_metabox_save( $post_id ) {
 		
 		$social_new = isset($_POST['_mtphr_members_social_new_tab']) ? $_POST['_mtphr_members_social_new_tab'] : '';
 		$social = $sanitized_social = isset($_POST['_mtphr_members_social']) ? $_POST['_mtphr_members_social'] : '';
+		$sanitized_social = array();
 		if( is_array($social) && count($social) > 0 ) {
-			$sanitized_social = array();
 			foreach( $social as $i=>$site ) {
 				$sanitized_social[$i] = esc_url( $site );
 			}
