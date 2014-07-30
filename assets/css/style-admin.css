@@ -59,15 +59,33 @@
 /* --------------------------------------------------------- */
 
 #mtphr-members-page-tabs {
+	font-family: inherit;
+	color: #333;
+	background: none;
+	border: none;
 	margin-top: 15px;
 }
 #mtphr-members-page-tabs ul {
+	background: none;
+	border: none;
 	border-bottom: 1px solid #ccc;
+	padding: 0;
 	margin-bottom: 10px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
 }
 #mtphr-members-page-tabs ul li {
 	background: none;
 	padding: 0;
+}
+#mtphr-members-page-tabs .ui-corner-top {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+#mtphr-members-page-tabs ul li.ui-state-hover {
+	border-color: #ccc #ccc #fff;
 }
 #mtphr-members-page-tabs ul li.ui-state-active {
 	border-color: #ccc #ccc #f5f5f5;
@@ -87,8 +105,10 @@
 #mtphr-members-page-tabs ul li a:hover {
 	color: #d54e21;
 }
-.mtphr-members-page-tabs-page {
+.ui-tabs .mtphr-members-page-tabs-page {
 	display: none;
+	color: #333;
+	padding: 0 !important;
 }
 
 
@@ -99,11 +119,12 @@
 .mtphr-members-table {
 	width: 100%;
 	border-spacing: 0;
+	font-size: 13px;
 }
 .mtphr-members-table > tbody > tr > td {
 	text-align: left;
 	vertical-align: top;
-	border-bottom: 1px solid #e9e9e9;
+	border-bottom: 1px solid #f7f7f7;
 	padding: 10px 2px;
 }
 .mtphr-members-table > tbody > tr:first-child > td {
@@ -116,9 +137,10 @@
 .mtphr-members-table > tbody > tr > td.mtphr-members-label {
 	width: 20%;
 	max-width: 200px;
-	background: #f0f0f0;
+	background: #fefefe;
 	border-left: 1px solid #dfdfdf;
-	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #dfdfdf;
+	border-bottom: 1px solid #f7f7f7;
 }
 .mtphr-members-table > tbody > tr > td:last-child,
 .mtphr-members-table > tbody > tr > td.mtphr-members-label {
@@ -169,30 +191,16 @@
 	font-size: 10px;
 	line-height: 13px;
 	font-style: italic;
-	font-weight: lighter;
 }
 .mtphr-members-radio,
 .mtphr-members-table label.mtphr-members-radio {
 	font-weight: normal;
 	margin-right: 8px;
 	margin-left: 2px;
-	margin-bottom: 0;
 }
 .mtphr-members-radio input,
 .mtphr-members-table label.mtphr-members-radio input {
 	margin-top: -1px;
-	margin-right: 2px;
-}
-.mtphr-members-checkbox,
-.mtphr-members-table label.mtphr-members-checkbox {
-	font-weight: normal;
-	margin-right: 8px;
-	margin-left: 1px;
-	margin-bottom: 0;
-}
-.mtphr-members-checkbox input,
-.mtphr-members-table label.mtphr-members-checkbox input {
-	margin-top: 0;
 	margin-right: 2px;
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Get & display a member's title - 1.1.0 */
+/* !Get & display a member's title - 1.1.2 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_member_title') ) {
@@ -12,36 +12,33 @@ function mtphr_member_title( $id=false, $element='h3', $before='', $after='', $c
 
 if( !function_exists('get_mtphr_member_title') ) {
 function get_mtphr_member_title( $id=false, $element='h3', $before='', $after='', $class='' ) {
+
+	// Get the id
+	$member = $id ? get_post( $id ) : get_post( get_the_id() );
 	
-	if( get_post_type() == 'mtphr_member' ) {
-		
-		// Get the id
-		$member = $id ? get_post( $id ) : get_post( get_the_id() );
-		
-		// Get the title
-		$title = get_post_meta( $member->ID, '_mtphr_members_title', true );
-		
-		// Sanitize the classes
-		$classes = mtphr_members_sanitize_class( $class );
-		
-		// Sanitize other elements
-		$element = sanitize_text_field( $element );
-		$before = html_entity_decode( sanitize_text_field($before) );
-		$after = html_entity_decode( sanitize_text_field($after) );
-		$title = html_entity_decode( $title );
-		
-		$html = '';
-		if( $title != '' ) {
-			$html = '<'.$element.' class="mtphr-member-title mtphr-member-title-'.$member->ID.' '.$classes.'">'.$before.$title.$after.'</'.$element.'>';
-		}		
-		return apply_filters( 'mtphr_member_title', $html, $id, $element, $before, $after, $class );
-	}
+	// Get the title
+	$title = get_post_meta( $member->ID, '_mtphr_members_title', true );
+	
+	// Sanitize the classes
+	$classes = mtphr_members_sanitize_class( $class );
+	
+	// Sanitize other elements
+	$element = sanitize_text_field( $element );
+	$before = html_entity_decode( sanitize_text_field($before) );
+	$after = html_entity_decode( sanitize_text_field($after) );
+	$title = html_entity_decode( $title );
+	
+	$html = '';
+	if( $title != '' ) {
+		$html = '<'.$element.' class="mtphr-member-title mtphr-member-title-'.$member->ID.' '.$classes.'">'.$before.$title.$after.'</'.$element.'>';
+	}		
+	return apply_filters( 'mtphr_member_title', $html, $id, $element, $before, $after, $class );
 }
 }
 
 
 /* --------------------------------------------------------- */
-/* !Get & display a member's contact info - 1.1.0 */
+/* !Get & display a member's contact info - 1.1.2 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_member_contact_info') ) {
@@ -53,39 +50,36 @@ function mtphr_member_contact_info( $id=false, $title='', $title_element='h3', $
 if( !function_exists('get_mtphr_member_contact_info') ) {
 function get_mtphr_member_contact_info( $id=false, $title='', $title_element='h3', $class='' ) {
 	
-		if( get_post_type() == 'mtphr_member' ) {
-		
-		// Get the id
-		$member = $id ? get_post( $id ) : get_post( get_the_id() );
-		
-		// Get the member info
-		$contact_info = get_post_meta( $member->ID, '_mtphr_members_contact_info', true );
-		
-		// Sanitize the classes
-		$classes = mtphr_members_sanitize_class( $class );
-		
-		$instance = apply_filters( 'mtphr_member_contact_info_instance', array(
-			'title' => sanitize_text_field($title),
-			'contact_info' => $contact_info
-		), $id, $title, $contact_info );
-		
-		$args = apply_filters( 'mtphr_member_contact_info_args', array(
-			'before_widget' => '<aside class="mtphr-member-contact-info '.$classes.'">',
-			'after_widget' => '</aside>',
-			'before_title' => '<'.$title_element.' class="mtphr-member-contact-info-title">',
-			'after_title' => '</'.$title_element.'>'
-		), $id, $title_element, $class );
-		
-		ob_start();
-		the_widget( 'mtphr_contact_widget', $instance, $args );
-		return ob_get_clean();
-	}
+	// Get the id
+	$member = $id ? get_post( $id ) : get_post( get_the_id() );
+	
+	// Get the member info
+	$contact_info = get_post_meta( $member->ID, '_mtphr_members_contact_info', true );
+	
+	// Sanitize the classes
+	$classes = mtphr_members_sanitize_class( $class );
+	
+	$instance = apply_filters( 'mtphr_member_contact_info_instance', array(
+		'title' => sanitize_text_field($title),
+		'contact_info' => $contact_info
+	), $id, $title, $contact_info );
+	
+	$args = apply_filters( 'mtphr_member_contact_info_args', array(
+		'before_widget' => '<aside class="mtphr-member-contact-info '.$classes.'">',
+		'after_widget' => '</aside>',
+		'before_title' => '<'.$title_element.' class="mtphr-member-contact-info-title">',
+		'after_title' => '</'.$title_element.'>'
+	), $id, $title_element, $class );
+	
+	ob_start();
+	the_widget( 'mtphr_contact_widget', $instance, $args );
+	return ob_get_clean();
 }
 }
 
 
 /* --------------------------------------------------------- */
-/* !Get & display a member's social sites - 1.1.0 */
+/* !Get & display a member's social sites - 1.1.2 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_member_social_sites') ) {
@@ -96,43 +90,40 @@ function mtphr_member_social_sites( $id=false, $title='', $title_element='h3', $
 
 if( !function_exists('get_mtphr_member_social_sites') ) {
 function get_mtphr_member_social_sites( $id=false, $title='', $title_element='h3', $class='' ) {
+
+	// Get the id
+	$member = $id ? get_post( $id ) : get_post( get_the_id() );
+		
+	// Get the social sites & new tab
+	$social_sites = get_post_meta( $member->ID, '_mtphr_members_social', true );
+	$new_tab = get_post_meta( $member->ID, '_mtphr_members_social_new_tab', true );
 	
-	if( get_post_type() == 'mtphr_member' ) {
-		
-		// Get the id
-		$member = $id ? get_post( $id ) : get_post( get_the_id() );
-		
-		// Get the social sites & new tab
-		$social_sites = get_post_meta( $member->ID, '_mtphr_members_social', true );
-		$new_tab = get_post_meta( $member->ID, '_mtphr_members_social_new_tab', true );
-		
-		// Sanitize the classes
-		$classes = mtphr_members_sanitize_class( $class );
-		
-		$instance = apply_filters( 'mtphr_member_social_instance', array(
-			'title' => sanitize_text_field($title),
-			'sites' => $social_sites,
-			'new_tab' => $new_tab
-		), $id, $title, $social_sites, $new_tab );
-		
-		$args = apply_filters( 'mtphr_member_social_args', array(
-			'before_widget' => '<aside class="mtphr-member-social-sites '.$classes.'">',
-			'after_widget' => '</aside>',
-			'before_title' => '<'.$title_element.' class="mtphr-member-social-sites-title">',
-			'after_title' => '</'.$title_element.'>'
-		), $id, $title_element, $class );
-		
-		ob_start();
-		the_widget( 'mtphr_social_widget', $instance, $args );
-		return ob_get_clean();
-	}
+	// Sanitize the classes
+	$classes = mtphr_members_sanitize_class( $class );
+	
+	$instance = apply_filters( 'mtphr_member_social_instance', array(
+		'title' => sanitize_text_field($title),
+		'sites' => $social_sites,
+		'new_tab' => $new_tab
+	), $id, $title, $social_sites, $new_tab );
+	
+	$args = apply_filters( 'mtphr_member_social_args', array(
+		'before_widget' => '<aside class="mtphr-member-social-sites '.$classes.'">',
+		'after_widget' => '</aside>',
+		'before_title' => '<'.$title_element.' class="mtphr-member-social-sites-title">',
+		'after_title' => '</'.$title_element.'>'
+	), $id, $title_element, $class );
+	
+	ob_start();
+	the_widget( 'mtphr_social_widget', $instance, $args );
+	return ob_get_clean();
 }
 }
 
 
 
 /* --------------------------------------------------------- */
-/* !Get & display a member's twitter feed - 1.1.0 */
+/* !Get & display a member's twitter feed - 1.1.2 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_member_twitter') ) {
@@ -144,41 +135,38 @@ function mtphr_member_twitter( $id=false, $title='', $title_element='h3', $limit
 if( !function_exists('get_mtphr_member_twitter') ) {
 function get_mtphr_member_twitter( $id=false, $title='', $title_element='h3', $limit='3', $image=false, $avatar=false, $class='' ) {
 	
-	if( get_post_type() == 'mtphr_member' ) {
+	// Get the id
+	$member = $id ? get_post( $id ) : get_post( get_the_id() );
 	
-		// Get the id
-		$member = $id ? get_post( $id ) : get_post( get_the_id() );
-		
-		// Get the member twitter handle
-		$twitter_name= get_post_meta( $member->ID, '_mtphr_members_twitter', true );
-		
-		// Sanitize the classes
-		$classes = mtphr_members_sanitize_class( $class );
-		
-		$instance = array(
-			'title' => sanitize_text_field($title),
-			'twitter_name' => $twitter_name,
-			'widget_limit' => intval($limit)
-		);
-		if( $image ) {
-			$instance['widget_image'] = true;
-		}
-		if( $avatar ) {
-			$instance['widget_avatar'] = true;
-		}
-		$instance = apply_filters( 'mtphr_member_twitter_instance', $instance, $id, $title, $twitter_name, $limit );	
-		
-		$args = apply_filters( 'mtphr_member_twitter_args', array(
-			'before_widget' => '<aside class="mtphr-member-twitter '.$classes.'">',
-			'after_widget' => '</aside>',
-			'before_title' => '<'.$title_element.' class="mtphr-member-twitter-title">',
-			'after_title' => '</'.$title_element.'>'
-		), $id, $title_element, $class );
-		
-		ob_start();
-		the_widget( 'mtphr_twitter_widget', $instance, $args );
-		return ob_get_clean();
+	// Get the member twitter handle
+	$twitter_name= get_post_meta( $member->ID, '_mtphr_members_twitter', true );
+	
+	// Sanitize the classes
+	$classes = mtphr_members_sanitize_class( $class );
+	
+	$instance = array(
+		'title' => sanitize_text_field($title),
+		'twitter_name' => $twitter_name,
+		'widget_limit' => intval($limit)
+	);
+	if( $image ) {
+		$instance['widget_image'] = true;
 	}
+	if( $avatar ) {
+		$instance['widget_avatar'] = true;
+	}
+	$instance = apply_filters( 'mtphr_member_twitter_instance', $instance, $id, $title, $twitter_name, $limit );	
+	
+	$args = apply_filters( 'mtphr_member_twitter_args', array(
+		'before_widget' => '<aside class="mtphr-member-twitter '.$classes.'">',
+		'after_widget' => '</aside>',
+		'before_title' => '<'.$title_element.' class="mtphr-member-twitter-title">',
+		'after_title' => '</'.$title_element.'>'
+	), $id, $title_element, $class );
+	
+	ob_start();
+	the_widget( 'mtphr_twitter_widget', $instance, $args );
+	return ob_get_clean();
 }
 }
 
