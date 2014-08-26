@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5SY9RRTQQ4ABN
 Tags: custom post type, members, team, team members, member info, info
 Requires at least: 3.2
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: /trunk/
 License: GPL2
 
@@ -60,6 +60,9 @@ Documentation is coming soon!
 1. Coming soon.
 
 == Changelog ==
+
+= 1.1.3 =
+* Added plugin to GitHub
 
 = 1.1.2 =
 * Removed post type restriction of data display output
@@ -125,4 +128,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added requirement for Metaphor Widgets pluging for certain aspects. Other updates.
+Added plugin to GitHub.
