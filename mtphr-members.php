@@ -89,4 +89,3 @@ function mtphr_members_deactivation() {
 	flush_rewrite_rules();
 }
 
-

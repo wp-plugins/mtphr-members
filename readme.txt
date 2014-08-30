@@ -43,7 +43,6 @@ The Member post type includes the following fields:
 `[mtphr_members_archive posts_per_page="6" columns="4" excerpt_length="200" excerpt_more="{View info}" assets="thumbnail,name,excerpt"]`
 
 
-
 == Installation ==
 
 1. Upload `mtphr-members` directory to the `/wp-content/plugins/` directory
