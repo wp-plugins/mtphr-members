@@ -61,7 +61,7 @@ Documentation is coming soon!
 == Changelog ==
 
 = 1.1.4 =
-* Made sure page wias singular before attempting to filter Metaphor Widget
+* Made sure page is singular before attempting to filter Metaphor Widget
 
 = 1.1.3 =
 * Added plugin to GitHub
