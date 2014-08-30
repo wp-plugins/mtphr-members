@@ -154,4 +154,3 @@ function mtphr_members_remove_widgets( $params ) {
 	return $params;
 }
 add_filter( 'dynamic_sidebar_params', 'mtphr_members_remove_widgets' );
-
