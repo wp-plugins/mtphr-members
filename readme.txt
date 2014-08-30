@@ -61,6 +61,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.1.4 =
+* Made sure page wias singular before attempting to filter Metaphor Widget
+
 = 1.1.3 =
 * Added plugin to GitHub
 
@@ -128,4 +131,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added plugin to GitHub.
+Made sure page wias singular before attempting to filter Metaphor Widget.

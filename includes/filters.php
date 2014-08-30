@@ -2,17 +2,20 @@
 
 
 /* --------------------------------------------------------- */
-/* !Override a Metaphor Social Links widget - 1.0.0 */
+/* !Override a Metaphor Social Links widget - 1.1.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_widgets_members_social_sites( $sites, $id ) {
-
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
-
-	if( is_array($widgets) ) {
-		if( array_key_exists($id, $widgets) ) {
-			$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
-			return mtphr_members_social_update_1_1_0( $member_sites );
+	
+	if( is_singular() ) {
+	
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
+	
+		if( is_array($widgets) ) {
+			if( array_key_exists($id, $widgets) ) {
+				$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
+				return mtphr_members_social_update_1_1_0( $member_sites );
+			}
 		}
 	}
 	return $sites;
@@ -22,20 +25,23 @@ add_filter( 'mtphr_widgets_social_sites', 'mtphr_widgets_members_social_sites', 
 
 
 /* --------------------------------------------------------- */
-/* !Override a Metaphor Social Links widget target - 1.0.0 */
+/* !Override a Metaphor Social Links widget target - 1.1.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_widgets_members_social_new_tab( $new_tab, $id ) {
-
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
-
-	if( is_array($widgets) ) {
-		if( array_key_exists($id, $widgets) ) {
-			$member_new_tab = get_post_meta( get_the_ID(), '_mtphr_members_social_new_tab', true );
-			if( $member_new_tab ) {
-				return true;
+	
+	if( is_singular() ) {
+	
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
+	
+		if( is_array($widgets) ) {
+			if( array_key_exists($id, $widgets) ) {
+				$member_new_tab = get_post_meta( get_the_ID(), '_mtphr_members_social_new_tab', true );
+				if( $member_new_tab ) {
+					return true;
+				}
+				return false;
 			}
-			return false;
 		}
 	}
 	return $new_tab;
@@ -45,17 +51,20 @@ add_filter( 'mtphr_widgets_social_new_tab', 'mtphr_widgets_members_social_new_ta
 
 
 /* --------------------------------------------------------- */
-/* !Override a Metaphor Contact widget - 1.0.0 */
+/* !Override a Metaphor Contact widget - 1.1.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_widgets_members_contact_info( $contact_info, $id ) {
-
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
-
-	if( is_array($widgets) ) {
-		if( array_key_exists($id, $widgets) ) {
-			$member_info = get_post_meta( get_the_ID(), '_mtphr_members_contact_info', true );
-			return $member_info;
+	
+	if( is_singular() ) {
+	
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_contact_override', true );
+	
+		if( is_array($widgets) ) {
+			if( array_key_exists($id, $widgets) ) {
+				$member_info = get_post_meta( get_the_ID(), '_mtphr_members_contact_info', true );
+				return $member_info;
+			}
 		}
 	}
 	return $contact_info;
@@ -65,17 +74,20 @@ add_filter( 'mtphr_widgets_contact_info', 'mtphr_widgets_members_contact_info', 
 
 
 /* --------------------------------------------------------- */
-/* !Override a Metaphor Twitter widget - 1.0.0 */
+/* !Override a Metaphor Twitter widget - 1.1.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_widgets_members_twitter_name( $twitter_name, $id ) {
-
-	$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
-
-	if( is_array($widgets) ) {
-		if( array_key_exists($id, $widgets) ) {
-			$member_twitter = get_post_meta( get_the_ID(), '_mtphr_members_twitter', true );
-			return $member_twitter;
+	
+	if( is_singular() ) {
+	
+		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_twitter_override', true );
+	
+		if( is_array($widgets) ) {
+			if( array_key_exists($id, $widgets) ) {
+				$member_twitter = get_post_meta( get_the_ID(), '_mtphr_members_twitter', true );
+				return $member_twitter;
+			}
 		}
 	}
 	return $twitter_name;
