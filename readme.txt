@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5SY9RRTQQ4ABN
 Tags: custom post type, members, team, team members, member info, info
 Requires at least: 3.2
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: /trunk/
 License: GPL2
 
