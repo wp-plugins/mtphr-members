@@ -60,6 +60,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.1.5 =
+* Added Italian translation files
+
 = 1.1.4 =
 * Made sure page is singular before attempting to filter Metaphor Widget
 
@@ -130,4 +133,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Made sure page wias singular before attempting to filter Metaphor Widget.
+Added Italian translation files.
