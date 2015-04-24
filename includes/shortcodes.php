@@ -77,7 +77,7 @@ add_shortcode( 'mtphr_member_twitter', 'mtphr_member_twitter_shortcode' );
 
 
 /* --------------------------------------------------------- */
-/* !Display the members archive - 1.0.9 */
+/* !Display the members archive - 1.1.6 */
 /* --------------------------------------------------------- */
 
 function mtphr_members_archive_display( $atts, $content = null ) {
@@ -160,7 +160,7 @@ function mtphr_members_archive_display( $atts, $content = null ) {
 				<?php do_action( 'mtphr_members_top' ); ?>
 
 				<?php
-				$permalink = ( $categories ) ? add_query_arg( array('taxonomy' => 'mtphr_member_category', 'terms' => $categories), get_permalink() ) : remove_query_arg( array('taxonomy', 'terms'), get_permalink() );
+				$permalink = ( $categories ) ? esc_url( add_query_arg(array('taxonomy' => 'mtphr_member_category', 'terms' => $categories), get_permalink()) ) : esc_url( remove_query_arg(array('taxonomy', 'terms'), get_permalink()) );
 				foreach( $asset_order as $asset ) {
 
 					switch( trim($asset) ) {
