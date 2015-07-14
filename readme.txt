@@ -60,6 +60,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.1.7 =
+* Fixed errors in Widget overrides
+
 = 1.1.6 =
 * Fixed add_query_arg() and remove_query_arg() usage
 
@@ -136,4 +139,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Fixed add_query_arg() and remove_query_arg() usage.
+Fixed errors in Widget overrides.

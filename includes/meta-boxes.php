@@ -211,18 +211,20 @@ function mtphr_member_settings_render_metabox() {
 			$social_widgets = array();
 			$twitter_widgets = array();
 			foreach( $sidebars as $key=>$sidebar ) {
-				if( is_array($sidebar) ) {
-					foreach( $sidebar as $widget ) {
-						if( strstr($widget,'mtphr-contact') ) {
-							$contact_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
-						}
-						if( strstr($widget,'mtphr-social') ) {
-							$social_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
-						}
-						if( strstr($widget,'mtphr-twitter') ) {
-							$twitter_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
-						}
-					}	
+				if( $key != 'wp_inactive_widgets' ) {
+					if( is_array($sidebar) ) {
+						foreach( $sidebar as $widget ) {
+							if( strstr($widget,'mtphr-contact') ) {
+								$contact_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
+							}
+							if( strstr($widget,'mtphr-social') ) {
+								$social_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
+							}
+							if( strstr($widget,'mtphr-twitter') ) {
+								$twitter_widgets[$widget] = '<strong>'.$widget.'</strong> <em>('.$wp_registered_sidebars[$key]['name'].')</em>';
+							}
+						}	
+					}
 				}
 			}
 			

@@ -97,7 +97,7 @@ add_filter( 'mtphr_widgets_twitter_name', 'mtphr_widgets_members_twitter_name', 
 
 
 /* --------------------------------------------------------- */
-/* !Remove unused widgets - 1.0.4 */
+/* !Remove unused widgets - 1.1.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_members_remove_widgets( $params ) {
@@ -120,7 +120,8 @@ function mtphr_members_remove_widgets( $params ) {
 		$widgets = get_post_meta( get_the_ID(), '_mtphr_members_social_override', true );
 		if( is_array($widgets) ) {
 			$member_sites = get_post_meta( get_the_ID(), '_mtphr_members_social', true );
-			if( count($member_sites) == 1 && $member_sites[0]['link'] == '' ) {
+			$first_item = reset($member_sites);
+			if( count($member_sites) == 1 && $first_item == '' ) {
 				$disabled_widget_ids = array_merge($disabled_widget_ids, $widgets);
 			}
 		}
